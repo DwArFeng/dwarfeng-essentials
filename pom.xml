@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.dwarfeng</groupId>
+    <artifactId>dwarfeng-essentials</artifactId>
+    <version>1.0.0.a-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>settingrepo</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <!-- 进行工程编码声明 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 进行 JDK 版本声明 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 进行资源的统一声明 -->
+        <!-- 进行版本声明 -->
+        <!-- 集中定义依赖版本号 -->
+        <javassist.version>3.23.2-GA</javassist.version>
+        <aspectj.version>1.8.14</aspectj.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <gson.version>2.8.9</gson.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
+        <dubbo.version>2.7.23</dubbo.version>
+        <hessian.version>4.0.38</hessian.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <jetty.version>9.4.58.v20250814</jetty.version>
+        <netty.version>4.2.9.Final</netty.version>
+        <zookeeper.version>3.9.5</zookeeper.version>
+        <guava.version>32.0.1-jre</guava.version>
+        <curator.version>4.3.0</curator.version>
+        <junit.version>4.13.2</junit.version>
+        <slf4j.version>1.7.36</slf4j.version>
+        <log4j2.version>2.25.4</log4j2.version>
+        <jboss-logging.version>3.4.3.Final</jboss-logging.version>
+        <protobuf.version>3.25.5</protobuf.version>
+        <mysql.version>8.2.0</mysql.version>
+        <druid.version>1.1.20</druid.version>
+        <spring.version>5.3.39</spring.version>
+        <kafka.version>3.9.2</kafka.version>
+        <spring-kafka.version>2.9.13</spring-kafka.version>
+        <jedis.version>3.10.0</jedis.version>
+        <spring-data-redis.version>2.7.18</spring-data-redis.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
+        <hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <jbcrypt.version>0.4</jbcrypt.version>
+        <jackson.version>2.21.2</jackson.version>
+        <groovy.version>4.0.31</groovy.version>
+        <thumbnailator.version>0.4.20</thumbnailator.version>
+        <dutil.version>0.4.2.a-beta</dutil.version>
+        <subgrade.version>1.8.3.a</subgrade.version>
+        <spring-telqos.version>2.0.2.a</spring-telqos.version>
+        <spring-terminator.version>2.0.2.a</spring-terminator.version>
+        <dwarfeng-datamark.version>2.2.0.a</dwarfeng-datamark.version>
+        <dwarfeng-ftp.version>2.1.0.a</dwarfeng-ftp.version>
+        <snowflake.version>2.0.2.a</snowflake.version>
+        <account-keeper.version>3.0.1.a</account-keeper.version>
+        <rbac-distributed-service.version>3.0.1.a</rbac-distributed-service.version>
+        <buddy.version>1.0.0.a</buddy.version>
+        <settingrepo.version>3.0.1.a</settingrepo.version>
+        <notify.version>2.0.0.a</notify.version>
+        <!-- Maven 插件版本声明 -->
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+        <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+    </properties>
+
+    <!-- 声明资源的坐标 -->
+    <!-- 只定义依赖的版本，并不实际依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Javassist 组件 -->
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+            <!-- AspectJ 组件 -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <!-- FastJson Json 处理工具包 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- Gson 组件 -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+            <!-- Snakeyaml 组件 -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+            <!-- Dubbo 分布式包 -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- Hessian 组件 -->
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
+            </dependency>
+            <!-- Servlet 相关 -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+            </dependency>
+            <!-- Jetty 框架 -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <!-- Netty 网络连接包 -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <!-- Zookeeper 客户端 -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <!-- Guava 组件 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!-- Curator 框架 -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <!-- 单元测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- 日志处理 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${jboss-logging.version}</version>
+            </dependency>
+            <!-- Protobuf 组件 -->
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <!-- MySql 连接器 -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- Druid 连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- Spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Kafka 客户端 -->
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <!-- Spring 集成 Kafka 组件 -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
+            <!-- Redis 客户端 -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+            <!-- Spring 集成 Redis 组件 -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${spring-data-redis.version}</version>
+            </dependency>
+            <!-- Hibernate 组件 -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <!-- Hibernate 验证器 -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+            <!-- Mapstruct 框架 -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- 密码加密组件 -->
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>${jbcrypt.version}</version>
+            </dependency>
+            <!-- Jackson 组件 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- Groovy 支持 -->
+            <dependency>
+                <groupId>org.apache.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <!-- Thumbnailator 缩略图组件 -->
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
+            </dependency>
+            <!-- Dutil 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dutil-basic</artifactId>
+                <version>${dutil.version}</version>
+            </dependency>
+            <!-- Subgrade 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>subgrade-stack</artifactId>
+                <version>${subgrade.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>subgrade-sdk</artifactId>
+                <version>${subgrade.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>subgrade-impl</artifactId>
+                <version>${subgrade.version}</version>
+            </dependency>
+            <!-- Spring-telqos 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>spring-telqos-core</artifactId>
+                <version>${spring-telqos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>spring-telqos-api</artifactId>
+                <version>${spring-telqos.version}</version>
+            </dependency>
+            <!-- Spring-terminator 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>spring-terminator-core</artifactId>
+                <version>${spring-terminator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>spring-terminator-api</artifactId>
+                <version>${spring-terminator.version}</version>
+            </dependency>
+            <!-- Dwarfeng-datamark 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-datamark-core</artifactId>
+                <version>${dwarfeng-datamark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-datamark-api</artifactId>
+                <version>${dwarfeng-datamark.version}</version>
+            </dependency>
+            <!-- Dwarfeng-ftp 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-ftp-core</artifactId>
+                <version>${dwarfeng-ftp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-ftp-api</artifactId>
+                <version>${dwarfeng-ftp.version}</version>
+            </dependency>
+            <!-- SnowFlake 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>snowflake-distributed-service-api</artifactId>
+                <version>${snowflake.version}</version>
+            </dependency>
+            <!-- Account-keeper 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>account-keeper-stack</artifactId>
+                <version>${account-keeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>account-keeper-sdk</artifactId>
+                <version>${account-keeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>account-keeper-impl</artifactId>
+                <version>${account-keeper.version}</version>
+            </dependency>
+            <!-- Rbac-distributed-service 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>rbac-distributed-service-stack</artifactId>
+                <version>${rbac-distributed-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>rbac-distributed-service-sdk</artifactId>
+                <version>${rbac-distributed-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>rbac-distributed-service-impl</artifactId>
+                <version>${rbac-distributed-service.version}</version>
+            </dependency>
+            <!-- Buddy 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>buddy-stack</artifactId>
+                <version>${buddy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>buddy-sdk</artifactId>
+                <version>${buddy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>buddy-impl</artifactId>
+                <version>${buddy.version}</version>
+            </dependency>
+            <!-- SettingRepo 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>settingrepo-stack</artifactId>
+                <version>${settingrepo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>settingrepo-sdk</artifactId>
+                <version>${settingrepo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>settingrepo-impl</artifactId>
+                <version>${settingrepo.version}</version>
+            </dependency>
+            <!-- Notify 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>notify-stack</artifactId>
+                <version>${notify.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>notify-sdk</artifactId>
+                <version>${notify.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>notify-impl</artifactId>
+                <version>${notify.version}</version>
+            </dependency>
+            <!-- 程序自身组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-stack</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-sdk</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-impl</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-node</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-node-all-he</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-essentials-distribute</artifactId>
+                <version>1.0.0.a-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <modules>
+        <module>dwarfeng-essentials-stack</module>
+        <module>dwarfeng-essentials-sdk</module>
+        <module>dwarfeng-essentials-impl</module>
+    </modules>
+</project>

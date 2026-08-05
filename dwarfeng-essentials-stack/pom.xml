@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.dwarfeng</groupId>
+        <artifactId>dwarfeng-essentials</artifactId>
+        <version>1.0.0.a-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dwarfeng-essentials-stack</artifactId>
+    <name>dwarfeng-essentials-stack</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!-- Subgrade 组件 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>subgrade-stack</artifactId>
+        </dependency>
+        <!-- Account-keeper 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>account-keeper-stack</artifactId>
+        </dependency>
+        <!-- Rbac-distributed-service 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>rbac-distributed-service-stack</artifactId>
+        </dependency>
+        <!-- Buddy 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>buddy-stack</artifactId>
+        </dependency>
+        <!-- SettingRepo 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>settingrepo-stack</artifactId>
+        </dependency>
+        <!-- Notify 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>notify-stack</artifactId>
+        </dependency>
+    </dependencies>
+</project>
