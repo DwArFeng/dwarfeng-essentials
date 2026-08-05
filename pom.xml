@@ -10,7 +10,7 @@
 
     <groupId>com.dwarfeng</groupId>
     <artifactId>dwarfeng-essentials</artifactId>
-    <version>1.0.0.a-SNAPSHOT</version>
+    <version>1.0.0.a</version>
 
     <packaging>pom</packaging>
 
@@ -492,32 +492,32 @@
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-stack</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-sdk</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-impl</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-node</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-node-all-he</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dwarfeng-essentials-distribute</artifactId>
-                <version>1.0.0.a-SNAPSHOT</version>
+                <version>1.0.0.a</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
