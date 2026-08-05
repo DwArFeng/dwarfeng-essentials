@@ -1,0 +1,236 @@
+package com.dwarfeng.essentials.node.all.he.launcher;
+
+import com.dwarfeng.acckeeper.stack.service.CleanQosService;
+import com.dwarfeng.acckeeper.stack.service.PurgeQosService;
+import com.dwarfeng.acckeeper.stack.service.ResetQosService;
+import com.dwarfeng.acckeeper.stack.service.SupportQosService;
+import com.dwarfeng.essentials.node.all.he.handler.AcckeeperLauncherSettingHandler;
+import com.dwarfeng.subgrade.stack.exception.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+
+import java.util.Date;
+import java.util.function.Consumer;
+
+class AcckeeperLauncherConsumer implements Consumer<ApplicationContext> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AcckeeperLauncherConsumer.class);
+
+    @Override
+    public void accept(ApplicationContext ctx) {
+        // 根据启动器设置处理器的设置，选择性重置保护器。
+        mayResetProtector(ctx);
+
+        // 根据启动器设置处理器的设置，选择性上线清理服务。
+        mayOnlineClean(ctx);
+        // 根据启动器设置处理器的设置，选择性启动清理服务。
+        mayEnableClean(ctx);
+
+        // 根据启动器设置处理器的设置，选择性启动重置服务。
+        mayStartReset(ctx);
+
+        // 根据启动器设置处理器的设置，选择性上线清除服务。
+        mayOnlinePurge(ctx);
+        // 根据启动器设置处理器的设置，选择性启动清除服务。
+        mayEnablePurge(ctx);
+    }
+
+    private static void mayResetProtector(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 如果不重置保护器，则返回。
+        if (!launcherSettingHandler.isResetProtectorSupport()) {
+            return;
+        }
+
+        // 重置保护器支持。
+        LOGGER.info("重置保护器支持...");
+        SupportQosService supportQosService = ctx.getBean(SupportQosService.class);
+        try {
+            supportQosService.resetProtector();
+        } catch (ServiceException e) {
+            LOGGER.warn("保护器支持重置失败，异常信息如下", e);
+        }
+    }
+
+    private static void mayOnlineClean(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理清理处理器的启动选项。
+        CleanQosService cleanQosService = ctx.getBean(CleanQosService.class);
+
+        // 清理处理器是否上线清理服务。
+        long onlineCleanDelay = launcherSettingHandler.getOnlineCleanDelay();
+        if (onlineCleanDelay == 0) {
+            LOGGER.info("立即上线清理服务...");
+            try {
+                cleanQosService.online();
+            } catch (ServiceException e) {
+                LOGGER.error("无法上线清理服务，异常原因如下", e);
+            }
+        } else if (onlineCleanDelay > 0) {
+            LOGGER.info("{} 毫秒后上线清理服务...", onlineCleanDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("上线清理服务...");
+                        try {
+                            cleanQosService.online();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法上线清理服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + onlineCleanDelay)
+            );
+        }
+    }
+
+    private static void mayEnableClean(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理清理处理器的启动选项。
+        CleanQosService cleanQosService = ctx.getBean(CleanQosService.class);
+
+        // 清理处理器是否启动清理服务。
+        long enableCleanDelay = launcherSettingHandler.getEnableCleanDelay();
+        if (enableCleanDelay == 0) {
+            LOGGER.info("立即启动清理服务...");
+            try {
+                cleanQosService.start();
+            } catch (ServiceException e) {
+                LOGGER.error("无法启动清理服务，异常原因如下", e);
+            }
+        } else if (enableCleanDelay > 0) {
+            LOGGER.info("{} 毫秒后启动清理服务...", enableCleanDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("启动清理服务...");
+                        try {
+                            cleanQosService.start();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法启动清理服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + enableCleanDelay)
+            );
+        }
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private static void mayStartReset(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理重置处理器的启动选项。
+        ResetQosService resetQosService = ctx.getBean(ResetQosService.class);
+
+        // 重置处理器是否启动重置服务。
+        long startResetDelay = launcherSettingHandler.getStartResetDelay();
+        if (startResetDelay == 0) {
+            LOGGER.info("立即启动重置服务...");
+            try {
+                resetQosService.start();
+            } catch (ServiceException e) {
+                LOGGER.error("无法启动重置服务，异常原因如下", e);
+            }
+        } else if (startResetDelay > 0) {
+            LOGGER.info("{} 毫秒后启动重置服务...", startResetDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("启动重置服务...");
+                        try {
+                            resetQosService.start();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法启动重置服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + startResetDelay)
+            );
+        }
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private static void mayOnlinePurge(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理清除处理器的启动选项。
+        PurgeQosService purgeQosService = ctx.getBean(PurgeQosService.class);
+
+        // 清除处理器是否上线清除服务。
+        long onlinePurgeDelay = launcherSettingHandler.getOnlinePurgeDelay();
+        if (onlinePurgeDelay == 0) {
+            LOGGER.info("立即上线清除服务...");
+            try {
+                purgeQosService.online();
+            } catch (ServiceException e) {
+                LOGGER.error("无法上线清除服务，异常原因如下", e);
+            }
+        } else if (onlinePurgeDelay > 0) {
+            LOGGER.info("{} 毫秒后上线清除服务...", onlinePurgeDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("上线清除服务...");
+                        try {
+                            purgeQosService.online();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法上线清除服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + onlinePurgeDelay)
+            );
+        }
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private static void mayEnablePurge(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理清除处理器的启动选项。
+        PurgeQosService purgeQosService = ctx.getBean(PurgeQosService.class);
+
+        // 清除处理器是否启动清除服务。
+        long enablePurgeDelay = launcherSettingHandler.getEnablePurgeDelay();
+        if (enablePurgeDelay == 0) {
+            LOGGER.info("立即启动清除服务...");
+            try {
+                purgeQosService.start();
+            } catch (ServiceException e) {
+                LOGGER.error("无法启动清除服务，异常原因如下", e);
+            }
+        } else if (enablePurgeDelay > 0) {
+            LOGGER.info("{} 毫秒后启动清除服务...", enablePurgeDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("启动清除服务...");
+                        try {
+                            purgeQosService.start();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法启动清除服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + enablePurgeDelay)
+            );
+        }
+    }
+}

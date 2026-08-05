@@ -568,5 +568,6 @@
         <module>dwarfeng-essentials-stack</module>
         <module>dwarfeng-essentials-sdk</module>
         <module>dwarfeng-essentials-impl</module>
+        <module>dwarfeng-essentials-node</module>
     </modules>
 </project>

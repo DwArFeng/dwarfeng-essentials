@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="std.console" target="SYSTEM_OUT" follow="true">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{DEFAULT}] [%p] [%t] [%c{1.}]: %m%n"/>
+        </Console>
+        <Async name="sync.console">
+            <AppenderRef ref="std.console"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="sync.console"/>
+        </Root>
+    </Loggers>
+</Configuration>

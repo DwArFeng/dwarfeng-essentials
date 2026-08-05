@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:datamark="http://dwarfeng.com/schema/dwarfeng-datamark"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://dwarfeng.com/schema/dwarfeng-datamark
+        http://dwarfeng.com/schema/dwarfeng-datamark/dwarfeng-datamark.xsd"
+>
+
+    <!-- region acckeeper -->
+
+    <!-- Account 数据标识。 -->
+    <datamark:handler
+            handler-name="acckeeper.accountDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.acckeeper.account.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.acckeeper.account.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.acckeeper.account.update_allowed}"
+    />
+
+    <!-- Protector 数据标识。 -->
+    <datamark:handler
+            handler-name="acckeeper.protectorDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.acckeeper.protector.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.acckeeper.protector.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.acckeeper.protector.update_allowed}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region rbacds -->
+
+    <!-- User 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.userDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.user.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.user.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.user.update_allowed}"
+    />
+
+    <!-- Role 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.roleDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.role.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.role.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.role.update_allowed}"
+    />
+
+    <!-- Pexp 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.pexpDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.pexp.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.pexp.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.pexp.update_allowed}"
+    />
+
+    <!-- Permission 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.permissionDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.permission.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.permission.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.permission.update_allowed}"
+    />
+
+    <!-- PermissionGroup 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.permissionGroupDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.permission_group.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.permission_group.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.permission_group.update_allowed}"
+    />
+
+    <!-- Scope 数据标识。 -->
+    <datamark:handler
+            handler-name="rbacds.scopeDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.rbacds.scope.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.rbacds.scope.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.rbacds.scope.update_allowed}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region buddy -->
+
+    <!-- User 数据标识。 -->
+    <datamark:handler
+            handler-name="buddy.userDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.buddy.user.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.buddy.user.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.buddy.user.update_allowed}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region settingrepo -->
+
+    <!-- SettingCategory 数据标识。 -->
+    <datamark:handler
+            handler-name="settingrepo.settingCategoryDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.settingrepo.setting_category.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.settingrepo.setting_category.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.settingrepo.setting_category.update_allowed}"
+    />
+
+    <!-- SettingNode 数据标识。 -->
+    <datamark:handler
+            handler-name="settingrepo.settingNodeDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.settingrepo.setting_node.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.settingrepo.setting_node.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.settingrepo.setting_node.update_allowed}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region notify -->
+
+    <!-- NotifySetting 数据标识。 -->
+    <datamark:handler
+            handler-name="notify.notifySettingDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.notify.notify_setting.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.notify.notify_setting.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.notify.notify_setting.update_allowed}"
+    />
+
+    <!-- Sender 数据标识。 -->
+    <datamark:handler
+            handler-name="notify.senderDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.notify.sender.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.notify.sender.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.notify.sender.update_allowed}"
+    />
+
+    <!-- Topic 数据标识。 -->
+    <datamark:handler
+            handler-name="notify.topicDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.notify.topic.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.notify.topic.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.notify.topic.update_allowed}"
+    />
+
+    <!-- User 数据标识。 -->
+    <datamark:handler
+            handler-name="notify.userDatamarkHandler"
+            resource-url="${com.dwarfeng.essentials.datamark.notify.user.resource_url}"
+            resource-charset="${com.dwarfeng.essentials.datamark.notify.user.resource_charset}"
+            update-allowed="${com.dwarfeng.essentials.datamark.notify.user.update_allowed}"
+    />
+
+    <!-- endregion -->
+
+    <!-- QoS 服务。 -->
+    <datamark:qos/>
+
+    <!-- 监听器解析器。 -->
+    <bean name="packagePrefixListenerResolver"
+          class="com.dwarfeng.essentials.sdk.datamark.PackagePrefixListenerResolver"/>
+</beans>
