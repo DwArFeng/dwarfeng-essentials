@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/VersionBlacklist.md。
+
 - 优化文件格式。
   - 优化 `*.properties` 文件的格式。
 
