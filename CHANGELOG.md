@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 优化部分启停脚本的文件格式。
+  - dwarfeng-essentials-start.bat。
+
 - 优化文件格式。
   - 优化 `*.properties` 文件的格式。
   - 优化 `application-context-*.xml` 文件的格式。
