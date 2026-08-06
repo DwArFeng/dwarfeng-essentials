@@ -30,13 +30,76 @@
 
 ## 版本黑名单
 
-| 编号   | 大版本 | 起始版本 | 结束版本 | 原因 |
-|------|-----|------|------|----|
-| （暂无） | -   | -    | -    | -  |
+| 编号                                         | 大版本 | 起始版本 | 结束版本 | 原因                                                                       |
+|----------------------------------------------|--------|----------|----------|----------------------------------------------------------------------------|
+| [BLACKLIST-20260806.2](#BLACKLIST-202608062) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | Dubbo 连接配置键命名与项目统一约定不一致，外部配置可能无法生效             |
+| [BLACKLIST-20260806.1](#BLACKLIST-202608061) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | `TablePrefixResolver` 包前缀映射数据错误，buddy 服务数据表名可能未正确隔离 |
 
 ## 详细原因
 
-（暂无）
+### BLACKLIST-20260806.2
+
+原因：`dwarfeng-essentials-node-all-he` 模块的 classpath 资源 `dubbo/connection.properties`
+将 Dubbo 连接配置键命名为 `dwarfeng.essentials.dubbo.*`，缺少项目统一命名空间所要求的 `com.` 前缀。
+`spring/application-context-dubbo.xml` 与 `properties-mapping/mapping-*.properties` 在修复前同样引用该错误前缀。
+项目其它配置域（curator、database、redis、datamark、telqos 等）均使用 `com.dwarfeng.essentials.*` 前缀，
+外部 `conf/dubbo/connection.properties` 也按此约定配置；
+错误版本下外部配置键与 classpath 占位符键名不同，
+导致外部配置的注册中心地址、协议端口/host、provider/consumer group 等无法覆盖 classpath 默认值（如 `your-host-here`），
+Dubbo 注册与发现可能失败。
+
+- 受影响模块/类：
+  - `dwarfeng-essentials-node-all-he/src/main/resources/dubbo/connection.properties`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/spring/application-context-dubbo.xml`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/properties-mapping/mapping-acckeeper.properties`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/properties-mapping/mapping-buddy.properties`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/properties-mapping/mapping-notify.properties`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/properties-mapping/mapping-rbacds.properties`
+  - `dwarfeng-essentials-node-all-he/src/main/resources/properties-mapping/mapping-settingrepo.properties`
+- 典型触发条件：
+  - 使用 1.0.0.a 或 1.0.1.a 版本部署节点；
+  - 通过外部 `conf/dubbo/connection.properties` 配置真实注册中心地址、协议端口或 group；
+  - Spring 上下文加载 `application-context-dubbo.xml` 并解析 Dubbo 占位符。
+- 典型症状：
+  - 外部 conf 中配置的 Dubbo 注册中心地址未生效，服务仍尝试连接 `your-host-here`；
+  - Dubbo 服务注册失败、consumer 无法发现 provider，或 Hessian 协议端口绑定异常；
+  - provider group 被解析为空字符串或错误值，导致 RPC 调用分组不匹配。
+- 影响范围：
+  - 所有通过 Dubbo/Hessian 暴露或消费的 acckeeper、rbacds、buddy、settingrepo、notify 服务。
+  - 不直接依赖 Dubbo RPC 的本地调用与 Telqos 命令不受影响。
+
+迁移建议：升级至 1.0.2.a 及以上版本。
+
+### BLACKLIST-20260806.1
+
+原因：`com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver` 中，
+包前缀映射 `PACKAGE_PREFIX_MAP`缺失 `com.dwarfeng.buddy.` → `tbl_buddy_` 的映射，
+同时残留了 buddy 源服务旧包名的错误映射 `com.jiermt.hr.` → `tbl_hr_`。
+`PackagePrefixTableNameIntegrator` 在 Hibernate 元数据构建阶段会依据该映射为各来源服务的实体主表名追加服务级前缀；
+buddy 包名下的实体因无法命中任何映射，其表名不会被改写为 `tbl_buddy_*`，
+而是保留原始的 `tbl_user`、`tbl_profile`、`tbl_avatar_info`、`tbl_notification` 等名称，落入未隔离的公共表命名空间。
+这会导致 buddy 相关数据库表名与项目预期的命名空间隔离设计不符，可能访问到错误的表或在目标 schema 中报表不存在的错误。
+
+- 受影响模块/类：
+  - `com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver`
+  - `com.dwarfeng.essentials.sdk.hibernate.PackagePrefixTableNameIntegrator`
+  - `com.dwarfeng.buddy.impl.bean.entity.HibernateUser`
+  - `com.dwarfeng.buddy.impl.bean.entity.HibernateProfile`
+  - `com.dwarfeng.buddy.impl.bean.entity.HibernateAvatarInfo`
+  - `com.dwarfeng.buddy.impl.bean.entity.HibernateNotification`
+- 典型触发条件：
+  - 使用 1.0.0.a 或 1.0.1.a 版本启动节点并完成 Hibernate SessionFactory 构建；
+  - buddy 服务相关实体（用户、资料、头像信息、通知等）参与 Hibernate 元数据绑定；
+  - 数据库 schema 按 `tbl_buddy_*` 前缀建表，或目标库中已存在其它同名非 buddy 表。
+- 典型症状：
+  - 启动日志或运行时 SQL 中出现表不存在（实际表名与预期不符）的异常；
+  - buddy 相关功能的数据库读写失败、返回空结果或命中错误表；
+  - 若目标 schema 中已存在同名表，可能静默地读写非 buddy 数据，造成数据隔离破坏。
+- 影响范围：
+  - 所有依赖 buddy 服务实体进行 Hibernate 持久化的功能。
+  - 其它来源服务实体不受影响（acckeeper、rbacds、settingrepo、notify 的映射正确）。
+
+迁移建议：升级至 1.0.2.a 及以上版本。
 
 ## 注意事项
 
