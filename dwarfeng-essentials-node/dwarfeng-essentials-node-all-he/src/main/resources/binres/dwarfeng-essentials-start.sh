@@ -45,4 +45,4 @@ nohup /bin/java -classpath "lib/*:libext/*" \
 "$java_logging_opts" \
 "${mainClass}" \
 >/dev/null 2>&1 "&"
-echo $! >"$basedir/dwarfeng-essentials.pid"
+echo $! >"$basedir/essentials.pid"

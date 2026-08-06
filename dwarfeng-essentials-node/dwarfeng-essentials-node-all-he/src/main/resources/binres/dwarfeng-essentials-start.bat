@@ -38,7 +38,7 @@ SET java_logging_opts=^
 
 rem Open directory and execute program.
 cd "%basedir%"
-start "Dwarfeng-essentials" /MAX ^
+start "Essentials" /MAX ^
 java -classpath "lib\*;libext\*" ^
 %jvm_memory_opts% ^
 %java_jmxremote_opts% ^

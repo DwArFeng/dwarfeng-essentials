@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 优化部分启停脚本的文件格式。
+  - dwarfeng-essentials-start.bat。
+  - dwarfeng-essentials-start.sh。
+  - dwarfeng-essentials-stop.sh。
+
 - 优化文件格式。
   - 优化 `log4j2.xml` 文件的格式。
 
