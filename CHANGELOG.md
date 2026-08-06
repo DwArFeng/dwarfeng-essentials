@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dwarfeng-essentials-node-all-he` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.essentials.node.all.he.configuration.SettingrepoCacheConfiguration。
+
 - `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.essentials.sdk.hibernate.EntityNameMappingRules。
 
