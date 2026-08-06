@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/ShellScripts.md。
+  - docs/wiki/zh-CN/BatchScripts.md。
+
 - 优化部分启停脚本的文件格式。
   - dwarfeng-essentials-start.bat。
   - dwarfeng-essentials-start.sh。
