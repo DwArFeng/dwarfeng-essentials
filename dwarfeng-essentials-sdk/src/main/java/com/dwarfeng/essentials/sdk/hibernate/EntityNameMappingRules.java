@@ -72,7 +72,9 @@ public final class EntityNameMappingRules {
     }
 
     static Map<String, String> entityNameMap(ResourceLoader resourceLoader) {
-        ResourcePatternResolver resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
+        ResourcePatternResolver resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(
+                resourceLoader
+        );
         CachingMetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
         Map<String, String> entityClassNamePrefixMap = new TreeMap<>();
 

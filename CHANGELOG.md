@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.essentials.sdk.hibernate.EntityNameMappingRules。
+
 - 优化部分启停脚本的文件格式。
   - dwarfeng-essentials-start.bat。
 
