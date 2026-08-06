@@ -8,7 +8,8 @@
 
 ### Bug 修复
 
-- (无)
+- 修复 `dwarfeng-essentials-sdk` 模块中部分代码中的数据错误。
+  - com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver。
 
 ### 功能移除
 

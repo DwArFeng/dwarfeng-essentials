@@ -21,9 +21,9 @@ public final class TablePrefixResolver {
     static {
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.acckeeper.", "tbl_acckeeper_");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.rbacds.", "tbl_rbacds_");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.buddy.", "tbl_buddy_");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.settingrepo.", "tbl_settingrepo_");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.notify.", "tbl_notify_");
-        PACKAGE_PREFIX_MAP.put("com.jiermt.hr.", "tbl_hr_");
     }
 
     private TablePrefixResolver() {
