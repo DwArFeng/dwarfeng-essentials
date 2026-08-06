@@ -91,7 +91,9 @@
                             </descriptors>
                             <tarLongFileMode>gnu</tarLongFileMode>
                             <attach>false</attach>
-                            <finalName>dwarfeng-essentials-${node.function}-${node.configuration}-${project.version}</finalName>
+                            <finalName>
+                                dwarfeng-essentials-${node.function}-${node.configuration}-${project.version}
+                            </finalName>
                         </configuration>
                     </execution>
                 </executions>
