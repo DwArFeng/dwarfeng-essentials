@@ -17,15 +17,15 @@
 
     <!-- Zookeeper 注册中心。 -->
     <dubbo:registry
-            address="${dwarfeng.essentials.dubbo.registry.zookeeper.address}"
-            timeout="${dwarfeng.essentials.dubbo.registry.zookeeper.timeout}"
+            address="${com.dwarfeng.essentials.dubbo.registry.zookeeper.address}"
+            timeout="${com.dwarfeng.essentials.dubbo.registry.zookeeper.timeout}"
     />
 
     <!-- Dubbo 协议。 -->
     <dubbo:protocol
             name="dubbo"
-            port="${dwarfeng.essentials.dubbo.protocol.dubbo.port}"
-            host="${dwarfeng.essentials.dubbo.protocol.dubbo.host}"
+            port="${com.dwarfeng.essentials.dubbo.protocol.dubbo.port}"
+            host="${com.dwarfeng.essentials.dubbo.protocol.dubbo.host}"
             dispatcher="message"
             threadpool="fixed"
             threads="100"
@@ -34,7 +34,7 @@
     <!-- Hessian 协议。 -->
     <dubbo:protocol
             name="hessian"
-            port="${dwarfeng.essentials.dubbo.protocol.hessian.port}"
+            port="${com.dwarfeng.essentials.dubbo.protocol.hessian.port}"
             server="jetty"
     />
 
@@ -53,73 +53,73 @@
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.AccountMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.AccountMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.AccountOperateService"
             ref="com.dwarfeng.acckeeper.impl.service.AccountOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.LoginHistoryMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.LoginHistoryMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.ProtectorInfoMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.ProtectorInfoMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.ProtectorSupportMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.ProtectorSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.ProtectorVariableMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.ProtectorVariableMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.LoginParamRecordMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.LoginParamRecordMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.ProtectDetailRecordMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.ProtectDetailRecordMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.DeriveHistoryMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.DeriveHistoryMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.LoginStateMaintainService"
             ref="com.dwarfeng.acckeeper.impl.service.LoginStateMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.AccessService"
             ref="com.dwarfeng.acckeeper.impl.service.AccessServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.acckeeper.stack.service.DeriveService"
             ref="com.dwarfeng.acckeeper.impl.service.DeriveServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.acckeeper.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.acckeeper.group}"
     />
 
     <!-- endregion -->
@@ -129,73 +129,73 @@
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.UserMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.UserMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.RoleMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.RoleMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PexpMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.PexpMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PexpOperateService"
             ref="com.dwarfeng.rbacds.impl.service.PexpOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PermissionMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.PermissionMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PermissionOperateService"
             ref="com.dwarfeng.rbacds.impl.service.PermissionOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PermissionGroupMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.PermissionGroupMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.PermissionGroupOperateService"
             ref="com.dwarfeng.rbacds.impl.service.PermissionGroupOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.FilterSupportMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.FilterSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.RoleUserRelationMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.RoleUserRelationMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.ScopeMaintainService"
             ref="com.dwarfeng.rbacds.impl.service.ScopeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.rbacds.stack.service.InspectService"
             ref="com.dwarfeng.rbacds.impl.service.InspectServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.rbacds.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.rbacds.group}"
     />
 
     <!-- endregion -->
@@ -205,44 +205,44 @@
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.UserMaintainService"
             ref="com.dwarfeng.buddy.impl.service.UserMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.AvatarInfoMaintainService"
             ref="com.dwarfeng.buddy.impl.service.AvatarInfoMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.AvatarOperateService"
             ref="com.dwarfeng.buddy.impl.service.AvatarOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.NotificationMaintainService"
             ref="com.dwarfeng.buddy.impl.service.NotificationMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.NotificationOperateService"
             ref="com.dwarfeng.buddy.impl.service.NotificationOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.ProfileMaintainService"
             ref="com.dwarfeng.buddy.impl.service.ProfileMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.buddy.stack.service.ProfileOperateService"
             ref="com.dwarfeng.buddy.impl.service.ProfileOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.buddy.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.buddy.group}"
     />
 
     <!-- endregion -->
@@ -252,180 +252,180 @@
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FormatterSupportMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.FormatterSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.SettingCategoryMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.SettingCategoryMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.SettingNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.SettingNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.SettingNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.SettingNodeOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.TextNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.TextNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.TextNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.TextNodeOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.ImageNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.ImageNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.ImageNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.ImageNodeOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.ImageListNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.ImageListNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.ImageListNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.ImageListNodeOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.ImageListNodeItemMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.ImageListNodeItemMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.IahnNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.IahnNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.IahnNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.IahnNodeOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.IahnNodeLocaleMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.IahnNodeLocaleMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.IahnNodeMekMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.IahnNodeMekMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.IahnNodeMessageMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.IahnNodeMessageMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.LongTextNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.LongTextNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.LongTextNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.LongTextNodeOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FileNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.FileNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FileNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.FileNodeOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FileListNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.FileListNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FileListNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.FileListNodeOperateServiceImpl"
             protocol="hessian"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.FileListNodeItemMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.FileListNodeItemMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.NavigationNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.NavigationNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.NavigationNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.NavigationNodeOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.NavigationNodeItemMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.NavigationNodeItemMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.KvNodeMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.KvNodeMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.KvNodeItemMaintainService"
             ref="com.dwarfeng.settingrepo.impl.service.KvNodeItemMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.settingrepo.stack.service.KvNodeOperateService"
             ref="com.dwarfeng.settingrepo.impl.service.KvNodeOperateServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
     <!-- endregion -->
@@ -435,91 +435,91 @@
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.NotifyService"
             ref="com.dwarfeng.notify.impl.service.NotifyServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.NotifySettingMaintainService"
             ref="com.dwarfeng.notify.impl.service.NotifySettingMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.RouterInfoMaintainService"
             ref="com.dwarfeng.notify.impl.service.RouterInfoMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.RouterSupportMaintainService"
             ref="com.dwarfeng.notify.impl.service.RouterSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.SenderInfoMaintainService"
             ref="com.dwarfeng.notify.impl.service.SenderInfoMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.SenderSupportMaintainService"
             ref="com.dwarfeng.notify.impl.service.SenderSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.TopicMaintainService"
             ref="com.dwarfeng.notify.impl.service.TopicMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.UserMaintainService"
             ref="com.dwarfeng.notify.impl.service.UserMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.DispatcherInfoMaintainService"
             ref="com.dwarfeng.notify.impl.service.DispatcherInfoMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.DispatcherSupportMaintainService"
             ref="com.dwarfeng.notify.impl.service.DispatcherSupportMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.MetaMaintainService"
             ref="com.dwarfeng.notify.impl.service.MetaMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.MetaIndicatorMaintainService"
             ref="com.dwarfeng.notify.impl.service.MetaIndicatorMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.NotifyHistoryMaintainService"
             ref="com.dwarfeng.notify.impl.service.NotifyHistoryMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.NotifyInfoRecordMaintainService"
             ref="com.dwarfeng.notify.impl.service.NotifyInfoRecordMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <dubbo:service
             interface="com.dwarfeng.notify.stack.service.NotifySendRecordMaintainService"
             ref="com.dwarfeng.notify.impl.service.NotifySendRecordMaintainServiceImpl"
-            group="${dwarfeng.essentials.dubbo.provider.notify.group}"
+            group="${com.dwarfeng.essentials.dubbo.provider.notify.group}"
     />
 
     <!-- endregion -->
@@ -535,7 +535,7 @@
             id="snowflakeGenerateService"
             interface="com.dwarfeng.sfds.stack.service.GenerateService"
             check="false"
-            group="${dwarfeng.essentials.dubbo.consumer.snowflake.group}"
+            group="${com.dwarfeng.essentials.dubbo.consumer.snowflake.group}"
     />
 
     <!-- endregion -->

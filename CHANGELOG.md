@@ -8,6 +8,9 @@
 
 ### Bug 修复
 
+- 修复 `dwarfeng-essentials-node-all-he` 模块中部分配置文件中的配置键错误。
+  - dubbo/connection.properties。
+
 - 修复 `dwarfeng-essentials-sdk` 模块中部分代码中的数据错误。
   - com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver。
 
