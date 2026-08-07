@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.dwarfeng</groupId>
         <artifactId>dwarfeng-essentials-node</artifactId>
-        <version>1.0.4.a-SNAPSHOT</version>
+        <version>1.0.4.a</version>
     </parent>
 
     <artifactId>dwarfeng-essentials-node-all-he</artifactId>
