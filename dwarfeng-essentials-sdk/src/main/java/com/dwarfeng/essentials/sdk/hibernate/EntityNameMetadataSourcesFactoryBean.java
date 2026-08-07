@@ -15,7 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * 构建包含 Chimera 专用 JPA 实体名称覆盖配置的 Hibernate 元数据源。
+ * 实体名称元数据源工厂 Bean。
  *
  * <p>
  * 该工厂在 Spring 初始化阶段创建 {@link MetadataSources}，注册指定的 Hibernate Integrator，

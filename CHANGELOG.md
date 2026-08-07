@@ -4,7 +4,9 @@
 
 ### 功能构建
 
-- (无)
+- `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.essentials.sdk.hibernate.EntityNameMappingRules。
+  - com.dwarfeng.essentials.sdk.hibernate.EntityNameMetadataSourcesFactoryBean。
 
 ### Bug 修复
 

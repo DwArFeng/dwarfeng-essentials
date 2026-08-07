@@ -12,11 +12,10 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * 定义 Chimera 运行时的 JPA 实体名称隔离规则。
+ * 实体名称映射规则。
  *
  * <p>
- * 来源服务以 Maven 坐标依赖的方式保留在聚合工程中，无法直接修改其实体注解。该规则集根据来源服务的实体包扫描所有
- * {@link Entity} 类型，并为每个实体生成服务级逻辑名称。
+ * 该规则集根据来源服务的实体包扫描所有 {@link Entity} 类型，并为每个实体生成服务级逻辑名称。
  * 生成的 ORM XML 会在 Hibernate 扫描实体包前注册，使不同来源模块的实体位于统一且彼此隔离的 JPA 命名空间中。
  * 数据表名称的隔离由 {@link PackagePrefixTableNameIntegrator} 负责。
  *
@@ -37,10 +36,6 @@ public final class EntityNameMappingRules {
         ENTITY_PACKAGE_PREFIX_MAP = Collections.unmodifiableMap(entityPackagePrefixMap);
     }
 
-    private EntityNameMappingRules() {
-        throw new IllegalStateException("Illegal instantiation");
-    }
-
     public static String[] entityPackages() {
         List<String> entityPackages = new ArrayList<>(ENTITY_PACKAGE_PREFIX_MAP.size());
         for (String entityPackagePrefix : ENTITY_PACKAGE_PREFIX_MAP.keySet()) {
@@ -49,7 +44,7 @@ public final class EntityNameMappingRules {
         return entityPackages.toArray(new String[0]);
     }
 
-    static String buildOrmXml(ResourceLoader resourceLoader) {
+    public static String buildOrmXml(ResourceLoader resourceLoader) {
         Map<String, String> entityNameMap = entityNameMap(resourceLoader);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
@@ -95,24 +90,6 @@ public final class EntityNameMappingRules {
         return buildEntityNameMap(entityClassNamePrefixMap);
     }
 
-    private static Map<String, String> buildEntityNameMap(Map<String, String> entityClassNamePrefixMap) {
-        Map<String, String> entityNameMap = new LinkedHashMap<>();
-        Map<String, String> entityNameClassMap = new LinkedHashMap<>();
-        for (Map.Entry<String, String> entry : entityClassNamePrefixMap.entrySet()) {
-            String entityClassName = entry.getKey();
-            String entityName = entry.getValue() + entityClassName.substring(entityClassName.lastIndexOf('.') + 1);
-            String previousEntityClassName = entityNameClassMap.put(entityName, entityClassName);
-            if (previousEntityClassName != null) {
-                throw new IllegalStateException(
-                        "生成了重复的 JPA 实体名称: " + entityName + ", 实体类: "
-                                + previousEntityClassName + ", " + entityClassName
-                );
-            }
-            entityNameMap.put(entityClassName, entityName);
-        }
-        return Collections.unmodifiableMap(entityNameMap);
-    }
-
     private static void scanEntityClassNamePrefixMap(
             ResourcePatternResolver resourcePatternResolver, CachingMetadataReaderFactory metadataReaderFactory,
             String entityPackagePrefix, String entityNamePrefix, Map<String, String> entityClassNamePrefixMap,
@@ -136,5 +113,27 @@ public final class EntityNameMappingRules {
         } catch (IOException e) {
             throw new IllegalStateException("无法扫描来源 JPA 实体: " + entityPackagePrefix, e);
         }
+    }
+
+    private static Map<String, String> buildEntityNameMap(Map<String, String> entityClassNamePrefixMap) {
+        Map<String, String> entityNameMap = new LinkedHashMap<>();
+        Map<String, String> entityNameClassMap = new LinkedHashMap<>();
+        for (Map.Entry<String, String> entry : entityClassNamePrefixMap.entrySet()) {
+            String entityClassName = entry.getKey();
+            String entityName = entry.getValue() + entityClassName.substring(entityClassName.lastIndexOf('.') + 1);
+            String previousEntityClassName = entityNameClassMap.put(entityName, entityClassName);
+            if (previousEntityClassName != null) {
+                throw new IllegalStateException(
+                        "生成了重复的 JPA 实体名称: " + entityName + ", 实体类: "
+                                + previousEntityClassName + ", " + entityClassName
+                );
+            }
+            entityNameMap.put(entityClassName, entityName);
+        }
+        return Collections.unmodifiableMap(entityNameMap);
+    }
+
+    private EntityNameMappingRules() {
+        throw new IllegalStateException("禁止实例化");
     }
 }
