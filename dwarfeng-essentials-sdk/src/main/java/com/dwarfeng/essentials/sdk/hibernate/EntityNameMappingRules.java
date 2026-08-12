@@ -8,6 +8,7 @@ import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.IOException;
 import java.util.*;
 
@@ -16,8 +17,8 @@ import java.util.*;
  *
  * <p>
  * 该规则集根据来源服务的实体包扫描所有 {@link Entity} 类型，并为每个实体生成服务级逻辑名称。
- * 生成的 ORM XML 会在 Hibernate 扫描实体包前注册，使不同来源模块的实体位于统一且彼此隔离的 JPA 命名空间中。
- * 数据表名称的隔离由 {@link PackagePrefixTableNameIntegrator} 负责。
+ * 生成的 ORM XML 会在 Hibernate 扫描实体包前注册，使不同来源模块的实体位于统一且彼此隔离的 JPA 命名空间中，
+ * 并覆写实体主表名称，为不同来源服务的实体表添加来源服务前缀，避免不同来源服务的实体表名称冲突。
  *
  * @author DwArFeng
  * @since 1.0.0
@@ -45,7 +46,7 @@ public final class EntityNameMappingRules {
     }
 
     public static String buildOrmXml(ResourceLoader resourceLoader) {
-        Map<String, String> entityNameMap = entityNameMap(resourceLoader);
+        Map<String, EntityMapping> entityMappingMap = entityMappingMap(resourceLoader);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         stringBuilder.append("<entity-mappings\n");
@@ -55,44 +56,48 @@ public final class EntityNameMappingRules {
         stringBuilder.append("        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd\"\n");
         stringBuilder.append("        version=\"2.2\"\n");
         stringBuilder.append(">\n\n");
-        for (Map.Entry<String, String> entry : entityNameMap.entrySet()) {
+        for (Map.Entry<String, EntityMapping> entry : entityMappingMap.entrySet()) {
             stringBuilder.append("    <entity class=\"");
             stringBuilder.append(entry.getKey());
             stringBuilder.append("\" name=\"");
-            stringBuilder.append(entry.getValue());
+            stringBuilder.append(entry.getValue().entityName);
+            stringBuilder.append("\">\n");
+            stringBuilder.append("        <table name=\"");
+            stringBuilder.append(entry.getValue().tableName);
             stringBuilder.append("\"/>\n");
+            stringBuilder.append("    </entity>\n");
         }
         stringBuilder.append("</entity-mappings>\n");
         return stringBuilder.toString();
     }
 
-    static Map<String, String> entityNameMap(ResourceLoader resourceLoader) {
+    private static Map<String, EntityMapping> entityMappingMap(ResourceLoader resourceLoader) {
         ResourcePatternResolver resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(
                 resourceLoader
         );
         CachingMetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
-        Map<String, String> entityClassNamePrefixMap = new TreeMap<>();
+        Map<String, EntityMapping> entityClassNameMappingMap = new TreeMap<>();
 
         for (Map.Entry<String, String> entry : ENTITY_PACKAGE_PREFIX_MAP.entrySet()) {
             String entityPackagePrefix = entry.getKey();
             String resourcePattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
                     + entityPackagePrefix.replace('.', '/') + "**/*.class";
-            scanEntityClassNamePrefixMap(
+            scanEntityClassNameMappingMap(
                     resourcePatternResolver, metadataReaderFactory, entityPackagePrefix, entry.getValue(),
-                    entityClassNamePrefixMap, resourcePattern
+                    entityClassNameMappingMap, resourcePattern
             );
         }
 
-        if (entityClassNamePrefixMap.isEmpty()) {
+        if (entityClassNameMappingMap.isEmpty()) {
             throw new IllegalStateException("未扫描到任何来源 JPA 实体");
         }
 
-        return buildEntityNameMap(entityClassNamePrefixMap);
+        return buildEntityMappingMap(entityClassNameMappingMap);
     }
 
-    private static void scanEntityClassNamePrefixMap(
+    private static void scanEntityClassNameMappingMap(
             ResourcePatternResolver resourcePatternResolver, CachingMetadataReaderFactory metadataReaderFactory,
-            String entityPackagePrefix, String entityNamePrefix, Map<String, String> entityClassNamePrefixMap,
+            String entityPackagePrefix, String entityNamePrefix, Map<String, EntityMapping> entityClassNameMappingMap,
             String resourcePattern
     ) {
         try {
@@ -105,8 +110,10 @@ public final class EntityNameMappingRules {
                 if (!entityClassName.startsWith(entityPackagePrefix)) {
                     throw new IllegalStateException("实体类不匹配已登记的实体包规则: " + entityClassName);
                 }
-                String previousEntityNamePrefix = entityClassNamePrefixMap.put(entityClassName, entityNamePrefix);
-                if (previousEntityNamePrefix != null) {
+                EntityMapping previousEntityMapping = entityClassNameMappingMap.put(
+                        entityClassName, new EntityMapping(entityNamePrefix, resolveTableName(metadataReader, entityClassName))
+                );
+                if (previousEntityMapping != null) {
                     throw new IllegalStateException("发现重复的来源 JPA 实体类: " + entityClassName);
                 }
             }
@@ -115,12 +122,15 @@ public final class EntityNameMappingRules {
         }
     }
 
-    private static Map<String, String> buildEntityNameMap(Map<String, String> entityClassNamePrefixMap) {
-        Map<String, String> entityNameMap = new LinkedHashMap<>();
+    private static Map<String, EntityMapping> buildEntityMappingMap(
+            Map<String, EntityMapping> entityClassNameMappingMap
+    ) {
+        Map<String, EntityMapping> entityMappingMap = new LinkedHashMap<>();
         Map<String, String> entityNameClassMap = new LinkedHashMap<>();
-        for (Map.Entry<String, String> entry : entityClassNamePrefixMap.entrySet()) {
+        for (Map.Entry<String, EntityMapping> entry : entityClassNameMappingMap.entrySet()) {
             String entityClassName = entry.getKey();
-            String entityName = entry.getValue() + entityClassName.substring(entityClassName.lastIndexOf('.') + 1);
+            EntityMapping entityMapping = entry.getValue();
+            String entityName = entityMapping.entityName + entityClassName.substring(entityClassName.lastIndexOf('.') + 1);
             String previousEntityClassName = entityNameClassMap.put(entityName, entityClassName);
             if (previousEntityClassName != null) {
                 throw new IllegalStateException(
@@ -128,9 +138,34 @@ public final class EntityNameMappingRules {
                                 + previousEntityClassName + ", " + entityClassName
                 );
             }
-            entityNameMap.put(entityClassName, entityName);
+            entityMappingMap.put(entityClassName, new EntityMapping(entityName, entityMapping.tableName));
         }
-        return Collections.unmodifiableMap(entityNameMap);
+        return Collections.unmodifiableMap(entityMappingMap);
+    }
+
+    private static String resolveTableName(MetadataReader metadataReader, String entityClassName) {
+        Map<String, Object> tableAttributes = metadataReader.getAnnotationMetadata().getAnnotationAttributes(
+                Table.class.getName()
+        );
+        if (tableAttributes == null) {
+            throw new IllegalStateException("来源 JPA 实体未声明 @Table: " + entityClassName);
+        }
+        Object tableNameAttribute = tableAttributes.get("name");
+        if (!(tableNameAttribute instanceof String) || ((String) tableNameAttribute).isEmpty()) {
+            throw new IllegalStateException("来源 JPA 实体未声明 @Table.name: " + entityClassName);
+        }
+        return TablePrefixResolver.resolveTableName(entityClassName, (String) tableNameAttribute);
+    }
+
+    private static final class EntityMapping {
+
+        private final String entityName;
+        private final String tableName;
+
+        private EntityMapping(String entityName, String tableName) {
+            this.entityName = entityName;
+            this.tableName = tableName;
+        }
     }
 
     private EntityNameMappingRules() {
