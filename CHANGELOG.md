@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 更新。
+  - docs/wiki/zh-CN/VersionBlacklist.md。
+
 - `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.essentials.sdk.hibernate.EntityNameMetadataSourcesFactoryBean。
   - com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver。

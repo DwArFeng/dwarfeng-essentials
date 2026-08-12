@@ -30,12 +30,47 @@
 
 ## 版本黑名单
 
-| 编号                                         | 大版本 | 起始版本 | 结束版本 | 原因                                                                       |
-|----------------------------------------------|--------|----------|----------|----------------------------------------------------------------------------|
-| [BLACKLIST-20260806.2](#BLACKLIST-202608062) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | Dubbo 连接配置键命名与项目统一约定不一致，外部配置可能无法生效             |
-| [BLACKLIST-20260806.1](#BLACKLIST-202608061) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | `TablePrefixResolver` 包前缀映射数据错误，buddy 服务数据表名可能未正确隔离 |
+| 编号                                         | 大版本 | 起始版本 | 结束版本 | 原因                                                                        |
+|----------------------------------------------|--------|----------|----------|-----------------------------------------------------------------------------|
+| [BLACKLIST-20260812.1](#BLACKLIST-202608121) | 1.0.x  | 1.0.0.a  | 1.0.4.a  | 多个来源服务的同名数据表元数据被 Hibernate 合并，实体及外键可能映射到错误表 |
+| [BLACKLIST-20260806.2](#BLACKLIST-202608062) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | Dubbo 连接配置键命名与项目统一约定不一致，外部配置可能无法生效              |
+| [BLACKLIST-20260806.1](#BLACKLIST-202608061) | 1.0.x  | 1.0.0.a  | 1.0.1.a  | `TablePrefixResolver` 包前缀映射数据错误，buddy 服务数据表名可能未正确隔离  |
 
 ## 详细原因
+
+### BLACKLIST-20260812.1
+
+原因：聚合节点通过 `EntityNameMappingRules` 生成动态 ORM XML，为不同来源服务的实体设置隔离后的 JPA 实体名称；
+但修复前未在该阶段覆写实体主表名称，而是由 `PackagePrefixTableNameIntegrator`
+在 Hibernate 完成实体与数据表元数据绑定后，再依据实体包名为数据表追加来源服务前缀。
+当多个来源服务的实体声明了相同的原始表名时，Hibernate 会先将这些实体绑定到同一个 `Table` 元数据对象，
+随后 Integrator 只能反复改写该共享对象的名称，无法再恢复各来源服务之间的数据表隔离。
+已验证 buddy、notify、rbacds 服务的 `HibernateUser` 均声明原始表名 `tbl_user`，
+错误版本下三个实体最终全部映射到 `tbl_rbacds_user`；buddy 与 notify 服务中引用用户表的外键也随之错误指向
+`tbl_rbacds_user`，可能造成跨服务错误读写或数据库结构异常。
+
+- 受影响模块/类：
+  - `com.dwarfeng.essentials.sdk.hibernate.EntityNameMappingRules`
+  - `com.dwarfeng.essentials.sdk.hibernate.EntityNameMetadataSourcesFactoryBean`
+  - `com.dwarfeng.essentials.sdk.hibernate.PackagePrefixTableNameIntegrator`
+  - `com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver`
+  - `com.dwarfeng.buddy.impl.bean.entity.HibernateUser`
+  - `com.dwarfeng.notify.impl.bean.entity.HibernateUser`
+  - `com.dwarfeng.rbacds.impl.bean.entity.HibernateUser`
+- 典型触发条件：
+  - 使用 1.0.0.a 至 1.0.4.a 版本启动聚合节点并构建 Hibernate SessionFactory；
+  - 两个或以上来源服务的实体被装配到同一个 SessionFactory；
+  - 不同来源服务中存在声明了相同原始表名的实体，如 buddy、notify、rbacds 服务的 `tbl_user`。
+- 典型症状：
+  - 某来源服务的实体实际访问另一个来源服务的数据表，查询结果异常或数据被写入错误表；
+  - 实体关联生成的外键指向错误的服务表，导致关联查询、数据写入或约束检查失败；
+  - Hibernate 建表或表结构校验时出现字段、索引、唯一键、外键不匹配等异常；
+  - 多个实体的字段集合被合并到同一表元数据后，可能产生未知列、缺失列等 SQL 异常，或静默破坏数据隔离。
+- 影响范围：
+  - 所有将多个来源服务实体装配到同一 Hibernate SessionFactory 的聚合节点。
+  - 所有跨来源服务同名的原始数据表均可能受影响，不限于已确认的 buddy、notify、rbacds 用户表。
+
+迁移建议：升级至 1.1.0.a 及以上版本。
 
 ### BLACKLIST-20260806.2
 
