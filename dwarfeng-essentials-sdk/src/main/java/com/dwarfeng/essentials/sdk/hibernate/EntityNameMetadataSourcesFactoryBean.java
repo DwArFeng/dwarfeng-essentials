@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * <p>
  * 该工厂在 Spring 初始化阶段创建 {@link MetadataSources}，注册指定的 Hibernate Integrator，
  * 并将动态生成的 ORM XML 添加到元数据源中。
- * {@code LocalSessionFactoryBean} 使用该元数据源扫描聚合来源包时，会应用隔离后的实体名称和主表名称，
+ * <code>LocalSessionFactoryBean</code> 使用该元数据源扫描聚合来源包时，会应用隔离后的实体名称和主表名称，
  * 从而无需修改来源服务制品即可消除重复的 JPA 实体名称与数据表名称。
  *
  * @author DwArFeng

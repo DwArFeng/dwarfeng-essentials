@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.essentials.sdk.hibernate.EntityNameMetadataSourcesFactoryBean。
+  - com.dwarfeng.essentials.sdk.hibernate.TablePrefixResolver。
+
 - 依赖升级。
   - 升级 `fastjson` 依赖版本为 `1.2.84` 以规避漏洞。
 
