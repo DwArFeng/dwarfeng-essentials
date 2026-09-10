@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- 新增基于来源服务包前缀的 Spring Bean 自动装配候选隔离能力。
+  - 支持聚合运行时按来源服务前缀解析 `@Qualifier` Bean。
+  - 在 `dwarfeng-essentials-node-all-he` 中装配对应的 BeanFactory 后置处理配置。
+
 - `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.essentials.sdk.datamark.PackagePrefixListenerResolver。
 
