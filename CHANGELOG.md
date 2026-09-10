@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dwarfeng-essentials-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.essentials.sdk.datamark.PackagePrefixListenerResolver。
+
 - 依赖升级。
   - 升级 `subgrade` 依赖版本为 `1.9.0.a` 以规避漏洞。
   - 升级 `jackson` 依赖版本为 `2.21.5` 以规避漏洞。
