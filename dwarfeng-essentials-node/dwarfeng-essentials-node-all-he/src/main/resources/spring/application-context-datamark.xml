@@ -153,6 +153,8 @@
     <datamark:qos/>
 
     <!-- 监听器解析器。 -->
-    <bean name="packagePrefixListenerResolver"
-          class="com.dwarfeng.essentials.sdk.datamark.PackagePrefixListenerResolver"/>
+    <bean
+            name="packagePrefixListenerResolver"
+            class="com.dwarfeng.essentials.sdk.datamark.PackagePrefixListenerResolver"
+    />
 </beans>

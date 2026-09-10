@@ -21,10 +21,10 @@
                 value="#{T(com.dwarfeng.essentials.sdk.telqos.PackagePrefixNamingStrategy).INSTANCE}"
         />
         <telqos:command>
-            <telqos:command-impl package-scan="com.dwarfeng.springterminator.api.integration.springtelqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.springtelqos.api.integration.dubbo"/>
             <telqos:command-impl package-scan="com.dwarfeng.springtelqos.api.integration.log4j2"/>
             <telqos:command-impl package-scan="com.dwarfeng.springtelqos.api.integration.system"/>
+            <telqos:command-impl package-scan="com.dwarfeng.springterminator.api.integration.springtelqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.datamark.api.integration.springtelqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.ftp.api.integration.springtelqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.acckeeper.impl.service.telqos"/>
