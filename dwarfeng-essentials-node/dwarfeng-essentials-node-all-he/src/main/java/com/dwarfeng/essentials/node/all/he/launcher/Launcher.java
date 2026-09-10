@@ -15,6 +15,10 @@ public class Launcher {
             new BuddyLauncherConsumer().accept(ctx);
             new SettingrepoLauncherConsumer().accept(ctx);
             new NotifyLauncherConsumer().accept(ctx);
+            new LogicengineLauncherConsumer().accept(ctx);
+            new AuditLauncherConsumer().accept(ctx);
+            new FileioLauncherConsumer().accept(ctx);
+            new VoucherLauncherConsumer().accept(ctx);
         });
     }
 }

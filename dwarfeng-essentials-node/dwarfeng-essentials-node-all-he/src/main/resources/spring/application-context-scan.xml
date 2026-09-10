@@ -153,6 +153,132 @@
 
     <!-- endregion -->
 
+    <!-- region logicengine -->
+
+    <!-- 扫描 cache 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.cache"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 dao 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.dao"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 handler 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    >
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.driver\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.guarder\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.performer\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.receiver\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.dispatcher\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.resetter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.logicengine\.impl\.handler\.pusher\..*$"/>
+    </context:component-scan>
+    <!-- 扫描 service 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.service"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+
+    <!-- endregion -->
+
+    <!-- region audit -->
+
+    <!-- 扫描 cache 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.audit.impl.cache"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 dao 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.audit.impl.dao"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 handler 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.audit.impl.handler"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    >
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.resetter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.pusher\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.inspector\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.inspreceiver\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.inspdispatcher\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.audit\.impl\.handler\.inspdriver\..*$"/>
+    </context:component-scan>
+    <!-- 扫描 service 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.audit.impl.service"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+
+    <!-- endregion -->
+
+    <!-- region fileio -->
+
+    <!-- 扫描 cache 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.fileio.impl.cache"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 dao 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.fileio.impl.dao"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 handler 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.fileio.impl.handler"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    >
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.reader\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.writer\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.importer\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.exporter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.pusher\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.fileio\.impl\.handler\.resetter\..*$"/>
+    </context:component-scan>
+    <!-- 扫描 service 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.fileio.impl.service"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+
+    <!-- endregion -->
+
+    <!-- region voucher -->
+
+    <!-- 扫描 cache 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.voucher.impl.cache"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 dao 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.voucher.impl.dao"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    <!-- 扫描 handler 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.voucher.impl.handler"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    >
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.voucher\.impl\.handler\.checker\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.voucher\.impl\.handler\.resetter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.voucher\.impl\.handler\.pusher\..*$"/>
+    </context:component-scan>
+    <!-- 扫描 service 的实现包。 -->
+    <context:component-scan
+            base-package="com.dwarfeng.voucher.impl.service"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+
+    <!-- endregion -->
+
     <!-- 扫描配置类所在的包。 -->
     <context:component-scan base-package="com.dwarfeng.essentials.node.all.he.configuration"/>
     <!-- 扫描启动器有关的 handler 所在的包。 -->

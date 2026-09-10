@@ -7,10 +7,10 @@ SET "basedir=%cd%"
 rem JVM memory settings.
 rem If you want the program to automatically allocate memory, please comment out the content below...
 SET jvm_memory_opts=^
--Xmx100m ^
--XX:MaxMetaspaceSize=130m ^
--XX:ReservedCodeCacheSize=15m ^
--XX:CompressedClassSpaceSize=15m
+-Xmx256m ^
+-XX:MaxMetaspaceSize=256m ^
+-XX:ReservedCodeCacheSize=32m ^
+-XX:CompressedClassSpaceSize=32m
 rem and uncomment the content below.
 rem SET jvm_memory_opts=
 

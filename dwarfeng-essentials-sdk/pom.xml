@@ -78,6 +78,26 @@
             <groupId>com.dwarfeng</groupId>
             <artifactId>notify-sdk</artifactId>
         </dependency>
+        <!-- Logic-engine 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>logic-engine-sdk</artifactId>
+        </dependency>
+        <!-- Audit 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>audit-sdk</artifactId>
+        </dependency>
+        <!-- Fileio 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>fileio-sdk</artifactId>
+        </dependency>
+        <!-- Voucher 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>voucher-sdk</artifactId>
+        </dependency>
         <!-- 程序自身模块 -->
         <dependency>
             <groupId>com.dwarfeng</groupId>

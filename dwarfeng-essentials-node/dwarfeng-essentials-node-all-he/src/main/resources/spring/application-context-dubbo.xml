@@ -524,6 +524,398 @@
 
     <!-- endregion -->
 
+    <!-- region logicengine -->
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.DriverInfoMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.DriverInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.DriverSupportMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.DriverSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.GuarderInfoMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.GuarderInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.GuarderSupportMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.GuarderSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.PerformerInfoMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.PerformerInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.PerformerSupportMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.PerformerSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.SectionMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.SectionMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.StateMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.StateMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.TaskEventMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.TaskEventMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.TaskMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.TaskMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.TaskVariableMaintainService"
+            ref="com.dwarfeng.logicengine.impl.service.TaskVariableMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.logicengine.stack.service.JobService"
+            ref="com.dwarfeng.logicengine.impl.service.JobServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.logicengine.group}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region audit -->
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditCategoryMaintainService"
+            ref="com.dwarfeng.audit.impl.service.AuditCategoryMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditPropertyIndicatorMaintainService"
+            ref="com.dwarfeng.audit.impl.service.AuditPropertyIndicatorMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditEntryMaintainService"
+            ref="com.dwarfeng.audit.impl.service.AuditEntryMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditEntryPropertyMaintainService"
+            ref="com.dwarfeng.audit.impl.service.AuditEntryPropertyMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditRecordService"
+            ref="com.dwarfeng.audit.impl.service.AuditRecordServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.AuditEntryLookupService"
+            ref="com.dwarfeng.audit.impl.service.AuditEntryLookupServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionAlarmTypeIndicatorMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionAlarmTypeIndicatorMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionAlarmMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionAlarmMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionDriverInfoMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionDriverInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionDriverSupportMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionDriverSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionTaskMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionTaskMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionTaskEventMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectionTaskEventMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectorInfoMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectorInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectorSupportMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectorSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectorVariableMaintainService"
+            ref="com.dwarfeng.audit.impl.service.InspectorVariableMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectionJobService"
+            ref="com.dwarfeng.audit.impl.service.InspectionJobServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region fileio -->
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportConfMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportConfMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExporterInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExporterInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExporterSupportMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExporterSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportFileInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportFileInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportTaskMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportTaskMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportTaskSettingMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportTaskSettingMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportTemplateInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportTemplateInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportTemplateOperateService"
+            ref="com.dwarfeng.fileio.impl.service.ExportTemplateOperateServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportConfMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportConfMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImporterInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImporterInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImporterSupportMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImporterSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportFileInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportFileInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportTaskMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportTaskMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportTaskSettingMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportTaskSettingMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportTemplateInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportTemplateInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportTemplateOperateService"
+            ref="com.dwarfeng.fileio.impl.service.ImportTemplateOperateServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ReaderInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ReaderInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ReaderSupportMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ReaderSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.WriterInfoMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.WriterInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.WriterSupportMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.WriterSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportMetadataMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ExportMetadataMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportMetadataMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.ImportMetadataMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.UserMaintainService"
+            ref="com.dwarfeng.fileio.impl.service.UserMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ExportService"
+            ref="com.dwarfeng.fileio.impl.service.ExportServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.fileio.stack.service.ImportService"
+            ref="com.dwarfeng.fileio.impl.service.ImportServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.fileio.group}"
+    />
+
+    <!-- endregion -->
+
+    <!-- region voucher -->
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.CheckerInfoMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.CheckerSupportMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.CheckerSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherCategoryMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherCategoryMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherCategoryVariableMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherCategoryVariableMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherCategoryVariableOperateService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherCategoryVariableOperateServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <dubbo:service
+            interface="com.dwarfeng.voucher.stack.service.VoucherVariableMaintainService"
+            ref="com.dwarfeng.voucher.impl.service.VoucherVariableMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.voucher.group}"
+    />
+
+    <!-- endregion -->
+
     <!-- endregion -->
 
     <!-- region 引用配置 -->

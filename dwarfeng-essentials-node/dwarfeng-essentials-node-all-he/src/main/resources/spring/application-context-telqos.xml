@@ -32,6 +32,12 @@
             <telqos:command-impl package-scan="com.dwarfeng.buddy.impl.service.telqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.settingrepo.impl.service.telqos"/>
             <telqos:command-impl package-scan="com.dwarfeng.notify.impl.service.telqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.logicengine.impl.service.telqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.audit.impl.service.telqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.tmpstg.api.integration.springtelqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.dct.api.integration.springtelqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.fileio.impl.service.telqos"/>
+            <telqos:command-impl package-scan="com.dwarfeng.voucher.impl.service.telqos"/>
         </telqos:command>
     </telqos:config>
     <telqos:handler/>

@@ -41,6 +41,10 @@ public class PackagePrefixAutowireCandidateResolver extends ContextAnnotationAut
         packagePrefixMap.put("com.dwarfeng.buddy.", "buddy");
         packagePrefixMap.put("com.dwarfeng.settingrepo.", "settingrepo");
         packagePrefixMap.put("com.dwarfeng.notify.", "notify");
+        packagePrefixMap.put("com.dwarfeng.logicengine.", "logicengine");
+        packagePrefixMap.put("com.dwarfeng.audit.", "audit");
+        packagePrefixMap.put("com.dwarfeng.fileio.", "fileio");
+        packagePrefixMap.put("com.dwarfeng.voucher.", "voucher");
         PACKAGE_PREFIX_MAP = Collections.unmodifiableMap(packagePrefixMap);
     }
 

@@ -64,12 +64,19 @@
         <spring-terminator.version>2.0.2.a</spring-terminator.version>
         <dwarfeng-datamark.version>2.2.1.a</dwarfeng-datamark.version>
         <dwarfeng-ftp.version>2.1.0.a</dwarfeng-ftp.version>
+        <dwarfeng-tmpstg.version>2.1.0.a</dwarfeng-tmpstg.version>
+        <dcti.version>3.0.1.a</dcti.version>
+        <dwarfeng-dct.version>3.0.2.a</dwarfeng-dct.version>
         <snowflake.version>2.0.2.a</snowflake.version>
         <account-keeper.version>3.0.1.a</account-keeper.version>
         <rbac-distributed-service.version>3.0.1.a</rbac-distributed-service.version>
         <buddy.version>1.0.0.a</buddy.version>
         <settingrepo.version>3.0.1.a</settingrepo.version>
         <notify.version>2.0.0.a</notify.version>
+        <logic-engine.version>1.1.1.a</logic-engine.version>
+        <audit.version>1.2.0.a</audit.version>
+        <fileio.version>1.0.1.a</fileio.version>
+        <voucher.version>2.0.0.a</voucher.version>
         <!-- Maven 插件版本声明 -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
@@ -402,6 +409,39 @@
                 <artifactId>dwarfeng-ftp-api</artifactId>
                 <version>${dwarfeng-ftp.version}</version>
             </dependency>
+            <!-- Dwarfeng-tmpstg 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-tmpstg-core</artifactId>
+                <version>${dwarfeng-tmpstg.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-tmpstg-api</artifactId>
+                <version>${dwarfeng-tmpstg.version}</version>
+            </dependency>
+            <!-- Dcti 标准接口 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dcti-core</artifactId>
+                <version>${dcti.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dcti-api</artifactId>
+                <version>${dcti.version}</version>
+            </dependency>
+            <!-- Dwarfeng-dct 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-dct-core</artifactId>
+                <version>${dwarfeng-dct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-dct-api</artifactId>
+                <version>${dwarfeng-dct.version}</version>
+            </dependency>
             <!-- SnowFlake 服务 -->
             <dependency>
                 <groupId>com.dwarfeng</groupId>
@@ -487,6 +527,70 @@
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>notify-impl</artifactId>
                 <version>${notify.version}</version>
+            </dependency>
+            <!-- Logic-engine 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>logic-engine-stack</artifactId>
+                <version>${logic-engine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>logic-engine-sdk</artifactId>
+                <version>${logic-engine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>logic-engine-impl</artifactId>
+                <version>${logic-engine.version}</version>
+            </dependency>
+            <!-- Audit 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>audit-stack</artifactId>
+                <version>${audit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>audit-sdk</artifactId>
+                <version>${audit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>audit-impl</artifactId>
+                <version>${audit.version}</version>
+            </dependency>
+            <!-- Fileio 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>fileio-stack</artifactId>
+                <version>${fileio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>fileio-sdk</artifactId>
+                <version>${fileio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>fileio-impl</artifactId>
+                <version>${fileio.version}</version>
+            </dependency>
+            <!-- Voucher 服务 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>voucher-stack</artifactId>
+                <version>${voucher.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>voucher-sdk</artifactId>
+                <version>${voucher.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>voucher-impl</artifactId>
+                <version>${voucher.version}</version>
             </dependency>
             <!-- 程序自身组件 -->
             <dependency>

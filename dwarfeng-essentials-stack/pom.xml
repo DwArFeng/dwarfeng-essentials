@@ -49,5 +49,25 @@
             <groupId>com.dwarfeng</groupId>
             <artifactId>notify-stack</artifactId>
         </dependency>
+        <!-- Logic-engine 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>logic-engine-stack</artifactId>
+        </dependency>
+        <!-- Audit 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>audit-stack</artifactId>
+        </dependency>
+        <!-- Fileio 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>fileio-stack</artifactId>
+        </dependency>
+        <!-- Voucher 服务 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>voucher-stack</artifactId>
+        </dependency>
     </dependencies>
 </project>

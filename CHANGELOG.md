@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- 扩展单体服务聚合范围。
+  - 新增 `logic-engine`、`audit`、`fileio`、`voucher` 服务的 Maven 坐标与运行时装配。
+  - 补充新增服务的启动流程、配置资源及运行隔离映射。
+
 - 新增基于来源服务包前缀的 Spring Bean 自动装配候选隔离能力。
   - 支持聚合运行时按来源服务前缀解析 `@Qualifier` Bean。
   - 在 `dwarfeng-essentials-node-all-he` 中装配对应的 BeanFactory 后置处理配置。

@@ -34,6 +34,10 @@ public final class EntityNameMappingRules {
         entityPackagePrefixMap.put("com.dwarfeng.buddy.impl.bean.entity.", "Buddy");
         entityPackagePrefixMap.put("com.dwarfeng.settingrepo.impl.bean.entity.", "Settingrepo");
         entityPackagePrefixMap.put("com.dwarfeng.notify.impl.bean.entity.", "Notify");
+        entityPackagePrefixMap.put("com.dwarfeng.logicengine.impl.bean.entity.", "Logicengine");
+        entityPackagePrefixMap.put("com.dwarfeng.audit.impl.bean.entity.", "Audit");
+        entityPackagePrefixMap.put("com.dwarfeng.fileio.impl.bean.entity.", "Fileio");
+        entityPackagePrefixMap.put("com.dwarfeng.voucher.impl.bean.entity.", "Voucher");
         ENTITY_PACKAGE_PREFIX_MAP = Collections.unmodifiableMap(entityPackagePrefixMap);
     }
 

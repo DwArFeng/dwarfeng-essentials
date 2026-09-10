@@ -1,0 +1,112 @@
+package com.dwarfeng.essentials.node.all.he.configuration;
+
+import com.dwarfeng.subgrade.impl.bean.MapStructBeanTransformer;
+import com.dwarfeng.subgrade.impl.cache.RedisBatchBaseCache;
+import com.dwarfeng.subgrade.sdk.redis.formatter.LongIdStringKeyFormatter;
+import com.dwarfeng.subgrade.sdk.redis.formatter.StringIdStringKeyFormatter;
+import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
+import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
+import com.dwarfeng.voucher.sdk.bean.BeanMapper;
+import com.dwarfeng.voucher.sdk.bean.entity.*;
+import com.dwarfeng.voucher.sdk.bean.key.format.VoucherCategoryVariableStringKeyFormatter;
+import com.dwarfeng.voucher.sdk.bean.key.format.VoucherVariableStringKeyFormatter;
+import com.dwarfeng.voucher.stack.bean.entity.*;
+import com.dwarfeng.voucher.stack.bean.key.VoucherCategoryVariableKey;
+import com.dwarfeng.voucher.stack.bean.key.VoucherVariableKey;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
+
+@Configuration
+public class VoucherCacheConfiguration {
+
+    private final RedisTemplate<String, ?> template;
+
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.checker_info}")
+    private String checkerInfoPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.checker_support}")
+    private String checkerSupportPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher}")
+    private String voucherPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher_category}")
+    private String voucherCategoryPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher_category_variable}")
+    private String voucherCategoryVariablePrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher_variable}")
+    private String voucherVariablePrefix;
+
+    public VoucherCacheConfiguration(RedisTemplate<String, ?> template) {
+        this.template = template;
+    }
+
+    @Bean(name = "voucher.checkerInfoRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, CheckerInfo, FastJsonCheckerInfo> checkerInfoRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonCheckerInfo>) template,
+                new StringIdStringKeyFormatter(checkerInfoPrefix),
+                new MapStructBeanTransformer<>(CheckerInfo.class, FastJsonCheckerInfo.class, BeanMapper.class)
+        );
+    }
+
+    @Bean(name = "voucher.checkerSupportRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, CheckerSupport, FastJsonCheckerSupport>
+    checkerSupportRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonCheckerSupport>) template,
+                new StringIdStringKeyFormatter(checkerSupportPrefix),
+                new MapStructBeanTransformer<>(CheckerSupport.class, FastJsonCheckerSupport.class, BeanMapper.class)
+        );
+    }
+
+    @Bean(name = "voucher.voucherRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, Voucher, FastJsonVoucher> voucherRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVoucher>) template,
+                new LongIdStringKeyFormatter(voucherPrefix),
+                new MapStructBeanTransformer<>(Voucher.class, FastJsonVoucher.class, BeanMapper.class)
+        );
+    }
+
+    @Bean(name = "voucher.voucherCategoryRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, VoucherCategory, FastJsonVoucherCategory>
+    voucherCategoryRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVoucherCategory>) template,
+                new StringIdStringKeyFormatter(voucherCategoryPrefix),
+                new MapStructBeanTransformer<>(
+                        VoucherCategory.class, FastJsonVoucherCategory.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "voucher.voucherCategoryVariableRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<VoucherCategoryVariableKey, VoucherCategoryVariable,
+            FastJsonVoucherCategoryVariable> voucherCategoryVariableRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVoucherCategoryVariable>) template,
+                new VoucherCategoryVariableStringKeyFormatter(voucherCategoryVariablePrefix),
+                new MapStructBeanTransformer<>(
+                        VoucherCategoryVariable.class, FastJsonVoucherCategoryVariable.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "voucher.voucherVariableRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<VoucherVariableKey, VoucherVariable, FastJsonVoucherVariable>
+    voucherVariableRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVoucherVariable>) template,
+                new VoucherVariableStringKeyFormatter(voucherVariablePrefix),
+                new MapStructBeanTransformer<>(
+                        VoucherVariable.class, FastJsonVoucherVariable.class, BeanMapper.class
+                )
+        );
+    }
+}

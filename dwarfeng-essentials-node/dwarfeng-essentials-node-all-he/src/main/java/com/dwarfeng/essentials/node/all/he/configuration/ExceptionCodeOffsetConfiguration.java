@@ -18,6 +18,14 @@ public class ExceptionCodeOffsetConfiguration {
     private int settingrepoExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.notify}")
     private int notifyExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.logicengine}")
+    private int logicengineExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.audit}")
+    private int auditExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.fileio}")
+    private int fileioExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.voucher}")
+    private int voucherExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.subgrade}")
     private int subgradeExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.spring_telqos}")
@@ -36,6 +44,10 @@ public class ExceptionCodeOffsetConfiguration {
         com.dwarfeng.buddy.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(buddyExceptionCodeOffset);
         com.dwarfeng.settingrepo.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(settingrepoExceptionCodeOffset);
         com.dwarfeng.notify.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(notifyExceptionCodeOffset);
+        com.dwarfeng.logicengine.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(logicengineExceptionCodeOffset);
+        com.dwarfeng.audit.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(auditExceptionCodeOffset);
+        com.dwarfeng.fileio.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(fileioExceptionCodeOffset);
+        com.dwarfeng.voucher.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(voucherExceptionCodeOffset);
         com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.setExceptionCodeOffset(
                 subgradeExceptionCodeOffset
         );

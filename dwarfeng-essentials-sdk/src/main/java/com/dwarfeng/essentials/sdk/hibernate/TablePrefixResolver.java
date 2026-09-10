@@ -25,6 +25,10 @@ public final class TablePrefixResolver {
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.buddy.", "tbl_buddy_");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.settingrepo.", "tbl_settingrepo_");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.notify.", "tbl_notify_");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.logicengine.", "tbl_logicengine_");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.audit.", "tbl_audit_");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.fileio.", "tbl_fileio_");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.voucher.", "tbl_voucher_");
     }
 
     public static String resolveTableName(String className, String tableName) {

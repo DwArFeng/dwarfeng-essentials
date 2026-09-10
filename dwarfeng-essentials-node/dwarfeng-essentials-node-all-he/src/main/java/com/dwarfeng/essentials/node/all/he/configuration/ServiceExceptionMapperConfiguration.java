@@ -23,6 +23,10 @@ public class ServiceExceptionMapperConfiguration {
         des = com.dwarfeng.buddy.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.settingrepo.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.notify.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.logicengine.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.audit.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.fileio.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.voucher.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         return new MapServiceExceptionMapper(des, com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.UNDEFINED);
     }
 }

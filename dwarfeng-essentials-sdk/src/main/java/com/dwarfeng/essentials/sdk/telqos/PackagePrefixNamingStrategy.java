@@ -28,6 +28,10 @@ public class PackagePrefixNamingStrategy extends AbstractNamingStrategy {
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.buddy.", "buddy:");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.settingrepo.", "settingrepo:");
         PACKAGE_PREFIX_MAP.put("com.dwarfeng.notify.", "notify:");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.logicengine.", "logicengine:");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.audit.", "audit:");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.fileio.", "fileio:");
+        PACKAGE_PREFIX_MAP.put("com.dwarfeng.voucher.", "voucher:");
     }
 
     @Override
