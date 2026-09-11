@@ -27,5 +27,6 @@
 
     <modules>
         <module>dwarfeng-essentials-node-all-he</module>
+        <module>dwarfeng-essentials-node-minimal-he</module>
     </modules>
 </project>

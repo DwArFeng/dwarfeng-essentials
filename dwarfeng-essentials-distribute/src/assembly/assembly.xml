@@ -27,6 +27,20 @@
             <directoryMode>0755</directoryMode>
         </fileSet>
         <!-- endregion -->
+        <!-- region dwarfeng-essentials-node-minimal-he -->
+        <fileSet>
+            <outputDirectory>./dwarfeng-essentials-minimal-he</outputDirectory>
+            <directory>
+                ../dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/target
+            </directory>
+            <includes>
+                <include>dwarfeng-essentials-minimal-he-${project.version}-release/**</include>
+            </includes>
+            <filtered>false</filtered>
+            <fileMode>0644</fileMode>
+            <directoryMode>0755</directoryMode>
+        </fileSet>
+        <!-- endregion -->
     </fileSets>
 
     <files>
@@ -35,6 +49,16 @@
             <outputDirectory>./dwarfeng-essentials-all-he</outputDirectory>
             <source>
                 ../dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/target/dwarfeng-essentials-all-he-${project.version}-release.tar.gz
+            </source>
+            <filtered>false</filtered>
+            <fileMode>0644</fileMode>
+        </file>
+        <!-- endregion -->
+        <!-- region dwarfeng-essentials-node-minimal-he -->
+        <file>
+            <outputDirectory>./dwarfeng-essentials-minimal-he</outputDirectory>
+            <source>
+                ../dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/target/dwarfeng-essentials-minimal-he-${project.version}-release.tar.gz
             </source>
             <filtered>false</filtered>
             <fileMode>0644</fileMode>

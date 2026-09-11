@@ -73,35 +73,42 @@ buildNumber.properties
 #################
 /dwarfeng-essentials-impl/logs/
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/logs/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/logs/
 
 #################
 ## Configuration Files
 #################
 /dwarfeng-essentials-impl/conf/
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/conf/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/conf/
 
 #################
 ## Libext Files
 #################
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/libext/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/libext/
 
 #################
 ## Opt Files
 #################
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/opt/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/opt/
 
 #################
 ## Optext Files
 #################
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/optext/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/optext/
 
 #################
 ## Confext Files
 #################
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/confext/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/confext/
 
 #################
 ## Temp Files
 #################
 /dwarfeng-essentials-impl/temp/
 /dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/temp/
+/dwarfeng-essentials-node/dwarfeng-essentials-node-minimal-he/temp/

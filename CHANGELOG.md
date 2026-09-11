@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 新增 `dwarfeng-essentials-node-minimal-he` 模块。
+  - 该模块作为精简节点，保留 `acckeeper`、`rbacds`、`buddy`、`settingrepo`、`notify` 和 `audit` 服务。
+
 - 扩展单体服务聚合范围。
   - 新增 `logic-engine`、`audit`、`fileio`、`voucher` 服务的 Maven 坐标与运行时装配。
   - 补充新增服务的启动流程、配置资源及运行隔离映射。

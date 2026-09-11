@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ftp="http://dwarfeng.com/schema/dwarfeng-ftp"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://dwarfeng.com/schema/dwarfeng-ftp
+        http://dwarfeng.com/schema/dwarfeng-ftp/dwarfeng-ftp.xsd"
+>
+
+    <ftp:config
+            host="${com.dwarfeng.essentials.ftp.host}"
+            username="${com.dwarfeng.essentials.ftp.username}"
+            password="${com.dwarfeng.essentials.ftp.password}"
+            port="${com.dwarfeng.essentials.ftp.port}"
+            server-charset="${com.dwarfeng.essentials.ftp.server_charset}"
+            connect-timeout="${com.dwarfeng.essentials.ftp.connect_timeout}"
+            noop-interval="${com.dwarfeng.essentials.ftp.noop_interval}"
+            buffer-size="${com.dwarfeng.essentials.ftp.buffer_size}"
+            temporary-file-directory-path="${com.dwarfeng.essentials.ftp.temporary_file_directory_path}"
+            temporary-file-prefix="${com.dwarfeng.essentials.ftp.temporary_file_prefix}"
+            temporary-file-suffix="${com.dwarfeng.essentials.ftp.temporary_file_suffix}"
+            file-copy-memory-buffer-size="${com.dwarfeng.essentials.ftp.file_copy_memory_buffer_size}"
+            data-connection-mode="${com.dwarfeng.essentials.ftp.data_connection_mode}"
+            data-timeout="${com.dwarfeng.essentials.ftp.data_timeout}"
+            active-remote-data-connection-mode-server-host=
+                    "${com.dwarfeng.essentials.ftp.active_remote_data_connection_mode_server_host}"
+            active-remote-data-connection-mode-server-port=
+                    "${com.dwarfeng.essentials.ftp.active_remote_data_connection_mode_server_port}"
+    />
+    <ftp:handler/>
+    <ftp:qos/>
+</beans>
