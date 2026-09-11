@@ -25,7 +25,8 @@
 
 ### Bug 修复
 
-- (无)
+- 修复部分配置文件中的错误配置。
+  - dwarfeng-essentials-node/dwarfeng-essentials-node-all-he/src/assembly/assembly.xml。
 
 ### 功能移除
 
