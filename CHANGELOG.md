@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/SystemRequirements.md。
+
 - 新增 `dwarfeng-essentials-node-minimal-he` 模块。
   - 该模块作为精简节点，保留 `acckeeper`、`rbacds`、`buddy`、`settingrepo`、`notify` 和 `audit` 服务。
 
