@@ -126,7 +126,6 @@ class AcckeeperLauncherConsumer implements Consumer<ApplicationContext> {
         }
     }
 
-    @SuppressWarnings("DuplicatedCode")
     private static void mayStartReset(ApplicationContext ctx) {
         // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
         AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
@@ -162,7 +161,6 @@ class AcckeeperLauncherConsumer implements Consumer<ApplicationContext> {
         }
     }
 
-    @SuppressWarnings("DuplicatedCode")
     private static void mayOnlinePurge(ApplicationContext ctx) {
         // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
         AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);
@@ -198,7 +196,6 @@ class AcckeeperLauncherConsumer implements Consumer<ApplicationContext> {
         }
     }
 
-    @SuppressWarnings("DuplicatedCode")
     private static void mayEnablePurge(ApplicationContext ctx) {
         // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
         AcckeeperLauncherSettingHandler launcherSettingHandler = ctx.getBean(AcckeeperLauncherSettingHandler.class);

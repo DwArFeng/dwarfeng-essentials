@@ -50,6 +50,7 @@ class VoucherLauncherConsumer implements Consumer<ApplicationContext> {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private static void mayOnlineCleanup(ApplicationContext ctx) {
         // 获取启动器设置处理器，用于获取启动器设置，并按照设置进行启动。
         VoucherLauncherSettingHandler launcherSettingHandler = ctx.getBean(VoucherLauncherSettingHandler.class);
@@ -85,6 +86,7 @@ class VoucherLauncherConsumer implements Consumer<ApplicationContext> {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private static void mayEnableCleanup(ApplicationContext ctx) {
         // 获取启动器设置处理器，用于获取启动器设置，并按照设置进行启动。
         VoucherLauncherSettingHandler launcherSettingHandler = ctx.getBean(VoucherLauncherSettingHandler.class);
