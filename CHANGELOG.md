@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/ConfDirectory.md。
+
 - 依赖升级。
   - 升级 `audit` 依赖版本为 `1.2.1.a` 以应用其新功能。
 
