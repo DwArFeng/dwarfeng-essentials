@@ -74,7 +74,7 @@
         <settingrepo.version>3.0.1.a</settingrepo.version>
         <notify.version>2.0.0.a</notify.version>
         <logic-engine.version>1.1.1.a</logic-engine.version>
-        <audit.version>1.2.0.a</audit.version>
+        <audit.version>1.2.1.a</audit.version>
         <fileio.version>1.0.1.a</fileio.version>
         <voucher.version>2.0.0.a</voucher.version>
         <!-- Maven 插件版本声明 -->
