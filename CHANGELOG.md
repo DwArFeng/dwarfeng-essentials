@@ -8,7 +8,8 @@
 
 ### Bug 修复
 
-- (无)
+- 修复部分 `opt-*.xml` 文件中错误的配置。
+  - opt-logicengine-pusher.xml。
 
 ### 功能移除
 

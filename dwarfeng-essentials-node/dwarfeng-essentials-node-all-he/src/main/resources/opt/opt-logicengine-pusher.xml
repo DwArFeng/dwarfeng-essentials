@@ -17,9 +17,11 @@
             name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
     >
         <!-- 加载 DrainPusher -->
+        <!--
         <context:include-filter
                 type="assignable" expression="com.dwarfeng.logicengine.impl.handler.pusher.DrainPusher"
         />
+        -->
 
         <!-- 加载 LogPusher -->
         <!--
