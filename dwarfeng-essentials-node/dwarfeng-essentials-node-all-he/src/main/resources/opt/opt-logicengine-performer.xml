@@ -13,7 +13,31 @@
     <!-- 加载 GroovyPerformer -->
     <!--
     <context:component-scan
-            base-package="com.dwarfeng.logicengine.impl.handler.performer"
+            base-package="com.dwarfeng.logicengine.impl.handler.performer.groovy"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    -->
+
+    <!-- 加载 CmdPerformer -->
+    <!--
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler.performer.cmd"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    -->
+
+    <!-- 加载 AnchorMessagePerformer -->
+    <!--
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler.performer.anchmsg"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    -->
+
+    <!-- 加载 TaskEventPerformer -->
+    <!--
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler.performer.tskevt"
             name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
     />
     -->

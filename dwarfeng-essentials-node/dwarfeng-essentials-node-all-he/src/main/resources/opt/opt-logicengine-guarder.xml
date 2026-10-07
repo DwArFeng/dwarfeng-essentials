@@ -10,10 +10,26 @@
         http://www.springframework.org/schema/context/spring-context.xsd"
 >
 
-    <!-- 加载 Guarder -->
+    <!-- 加载 AlwaysGuarder -->
     <!--
     <context:component-scan
-            base-package="com.dwarfeng.logicengine.impl.handler.guarder"
+            base-package="com.dwarfeng.logicengine.impl.handler.guarder.always"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    -->
+
+    <!-- 加载 GroovyGuarder -->
+    <!--
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler.guarder.groovy"
+            name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
+    />
+    -->
+
+    <!-- 加载 CompareGuarder -->
+    <!--
+    <context:component-scan
+            base-package="com.dwarfeng.logicengine.impl.handler.guarder.compare"
             name-generator="com.dwarfeng.essentials.sdk.spring.CanonicalNameBeanNameGenerator"
     />
     -->

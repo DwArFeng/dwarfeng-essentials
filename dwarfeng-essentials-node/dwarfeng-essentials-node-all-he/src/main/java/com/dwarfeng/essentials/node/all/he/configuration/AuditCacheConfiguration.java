@@ -33,25 +33,25 @@ public class AuditCacheConfiguration {
     private String auditEntryPrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.audit_entry_property}")
     private String auditEntryPropertyPrefix;
-    @Value("${cache.prefix.entity.inspection_alarm_type_indicator}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_alarm_type_indicator}")
     private String inspectionAlarmTypeIndicatorPrefix;
-    @Value("${cache.prefix.entity.inspection}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection}")
     private String inspectionPrefix;
-    @Value("${cache.prefix.entity.inspection_alarm}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_alarm}")
     private String inspectionAlarmPrefix;
-    @Value("${cache.prefix.entity.inspection_driver_info}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_driver_info}")
     private String inspectionDriverInfoPrefix;
-    @Value("${cache.prefix.entity.inspection_driver_support}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_driver_support}")
     private String inspectionDriverSupportPrefix;
-    @Value("${cache.prefix.entity.inspection_task}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_task}")
     private String inspectionTaskPrefix;
-    @Value("${cache.prefix.entity.inspection_task_event}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspection_task_event}")
     private String inspectionTaskEventPrefix;
-    @Value("${cache.prefix.entity.inspector_info}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspector_info}")
     private String inspectorInfoPrefix;
-    @Value("${cache.prefix.entity.inspector_support}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspector_support}")
     private String inspectorSupportPrefix;
-    @Value("${cache.prefix.entity.inspector_variable}")
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.audit.inspector_variable}")
     private String inspectorVariablePrefix;
 
     public AuditCacheConfiguration(RedisTemplate<String, ?> template) {
