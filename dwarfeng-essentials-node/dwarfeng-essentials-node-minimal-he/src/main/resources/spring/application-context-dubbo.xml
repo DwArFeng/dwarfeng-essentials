@@ -623,6 +623,11 @@
     />
 
     <dubbo:service
+            interface="com.dwarfeng.audit.stack.service.InspectorVariableOperateService"
+            ref="com.dwarfeng.audit.impl.service.InspectorVariableOperateServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.audit.stack.service.InspectionJobService"
             ref="com.dwarfeng.audit.impl.service.InspectionJobServiceImpl"
             group="${com.dwarfeng.essentials.dubbo.provider.audit.group}"

@@ -8,6 +8,9 @@
 
 ### Bug 修复
 
+- 修复部分 `application-context-*.xml` 文件中缺失的配置。
+  - application-context-dubbo.xml。
+
 - 修复部分 `*.properties` 文件中错误的配置。
   - curator/latch-path.properties。
 
