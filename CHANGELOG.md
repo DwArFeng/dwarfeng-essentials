@@ -8,6 +8,9 @@
 
 ### Bug 修复
 
+- 修复部分 `*.properties` 文件中错误的配置。
+  - curator/latch-path.properties。
+
 - 修复部分 `opt-*.xml` 文件中错误的配置。
   - opt-logicengine-pusher.xml。
 
