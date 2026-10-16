@@ -18,6 +18,9 @@ public class ServiceExceptionMapperConfiguration {
         des = com.dwarfeng.springterminator.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.datamark.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.ftp.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.tmpstg.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.dcti.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
+        des = com.dwarfeng.dct.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.acckeeper.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.rbacds.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);
         des = com.dwarfeng.buddy.sdk.util.ServiceExceptionHelper.putDefaultDestination(des);

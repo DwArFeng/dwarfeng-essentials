@@ -8,6 +8,22 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class ExceptionCodeOffsetConfiguration {
 
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.subgrade}")
+    private int subgradeExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.spring_telqos}")
+    private int springTelqosExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.spring_terminator}")
+    private int springTerminatorExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_datamark}")
+    private int dwarfengDatamarkExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_ftp}")
+    private int dwarfengFtpExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_tmpstg}")
+    private int dwarfengTmpstgExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dcti}")
+    private int dctiExceptionCodeOffset;
+    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_dct}")
+    private int dwarfengDctExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.acckeeper}")
     private int acckeeperExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.rbacds}")
@@ -26,28 +42,9 @@ public class ExceptionCodeOffsetConfiguration {
     private int fileioExceptionCodeOffset;
     @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.voucher}")
     private int voucherExceptionCodeOffset;
-    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.subgrade}")
-    private int subgradeExceptionCodeOffset;
-    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.spring_telqos}")
-    private int springTelqosExceptionCodeOffset;
-    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.spring_terminator}")
-    private int springTerminatorExceptionCodeOffset;
-    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_datamark}")
-    private int dwarfengDatamarkExceptionCodeOffset;
-    @Value("${com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_ftp}")
-    private int dwarfengFtpExceptionCodeOffset;
 
     @PostConstruct
     public void init() {
-        com.dwarfeng.acckeeper.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(acckeeperExceptionCodeOffset);
-        com.dwarfeng.rbacds.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(rbacdsExceptionCodeOffset);
-        com.dwarfeng.buddy.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(buddyExceptionCodeOffset);
-        com.dwarfeng.settingrepo.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(settingrepoExceptionCodeOffset);
-        com.dwarfeng.notify.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(notifyExceptionCodeOffset);
-        com.dwarfeng.logicengine.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(logicengineExceptionCodeOffset);
-        com.dwarfeng.audit.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(auditExceptionCodeOffset);
-        com.dwarfeng.fileio.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(fileioExceptionCodeOffset);
-        com.dwarfeng.voucher.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(voucherExceptionCodeOffset);
         com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.setExceptionCodeOffset(
                 subgradeExceptionCodeOffset
         );
@@ -62,6 +59,42 @@ public class ExceptionCodeOffsetConfiguration {
         );
         com.dwarfeng.ftp.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
                 dwarfengFtpExceptionCodeOffset
+        );
+        com.dwarfeng.tmpstg.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                dwarfengTmpstgExceptionCodeOffset
+        );
+        com.dwarfeng.dcti.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                dctiExceptionCodeOffset
+        );
+        com.dwarfeng.dct.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                dwarfengDctExceptionCodeOffset
+        );
+        com.dwarfeng.acckeeper.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                acckeeperExceptionCodeOffset
+        );
+        com.dwarfeng.rbacds.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                rbacdsExceptionCodeOffset
+        );
+        com.dwarfeng.buddy.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                buddyExceptionCodeOffset
+        );
+        com.dwarfeng.settingrepo.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                settingrepoExceptionCodeOffset
+        );
+        com.dwarfeng.notify.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                notifyExceptionCodeOffset
+        );
+        com.dwarfeng.logicengine.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                logicengineExceptionCodeOffset
+        );
+        com.dwarfeng.audit.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                auditExceptionCodeOffset
+        );
+        com.dwarfeng.fileio.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                fileioExceptionCodeOffset
+        );
+        com.dwarfeng.voucher.sdk.util.ServiceExceptionCodes.setExceptionCodeOffset(
+                voucherExceptionCodeOffset
         );
     }
 }

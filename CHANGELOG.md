@@ -9,7 +9,10 @@
 
 ### Bug 修复
 
-- (无)
+- 修复节点异常映射及异常码偏移配置中缺失的工具组件异常映射。
+  - dwarfeng-tmpstg。
+  - dcti。
+  - dwarfeng-dct。
 
 ### 功能移除
 
