@@ -9,6 +9,9 @@
 
 ### Bug 修复
 
+- 修复部分 `*.properties` 文件中错误的配置。
+  - `dwarfeng-essentials-node-minimal-he` 模块下的 curator/latch-path.properties。
+
 - 修复节点异常映射及异常码偏移配置中缺失的工具组件异常映射。
   - dwarfeng-tmpstg。
   - dcti。
