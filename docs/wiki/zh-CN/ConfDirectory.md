@@ -839,7 +839,7 @@ com.dwarfeng.acckeeper.curator.latch_path.purge.leader_latch=/acckeeper/purge/le
 # endregion
 # region notify curator/latch-path.properties
 # 清除服务的领导者锁存的路径。
-com.dwarfeng.notify.curator.latch_path.purge.leader_latch=/acckeeper/purge/leader_latch
+com.dwarfeng.notify.curator.latch_path.purge.leader_latch=/notify/purge/leader_latch
 # endregion
 # region logicengine curator/latch-path.properties
 # 任务检查服务的领导者锁路径。
@@ -1056,31 +1056,37 @@ com.dwarfeng.essentials.essentials.exception_code_offset=1000
 # essentials 工程中 subgrade 的异常代码偏移量。
 com.dwarfeng.essentials.essentials.exception_code_offset.subgrade=0
 # essentials 工程中 spring-telqos 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.spring_telqos=2000
+com.dwarfeng.essentials.essentials.exception_code_offset.spring_telqos=1000
 # essentials 工程中 spring-terminator 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.spring_terminator=3000
+com.dwarfeng.essentials.essentials.exception_code_offset.spring_terminator=2000
 # essentials 工程中 dwarfeng-datamark 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_datamark=4000
+com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_datamark=3000
 # essentials 工程中 dwarfeng-ftp 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_ftp=5000
+com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_ftp=4000
+# essentials 工程中 dwarfeng-tmpstg 的异常代码偏移量。
+com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_tmpstg=5000
+# essentials 工程中 dcti 的异常代码偏移量。
+com.dwarfeng.essentials.essentials.exception_code_offset.dcti=6000
+# essentials 工程中 dwarfeng-dct 的异常代码偏移量。
+com.dwarfeng.essentials.essentials.exception_code_offset.dwarfeng_dct=7000
 # essentials 工程中 acckeeper 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.acckeeper=6000
+com.dwarfeng.essentials.essentials.exception_code_offset.acckeeper=50000
 # essentials 工程中 rbacds 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.rbacds=7000
+com.dwarfeng.essentials.essentials.exception_code_offset.rbacds=51000
 # essentials 工程中 buddy 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.buddy=8000
+com.dwarfeng.essentials.essentials.exception_code_offset.buddy=52000
 # essentials 工程中 settingrepo 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.settingrepo=9000
+com.dwarfeng.essentials.essentials.exception_code_offset.settingrepo=53000
 # essentials 工程中 notify 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.notify=10000
+com.dwarfeng.essentials.essentials.exception_code_offset.notify=54000
 # essentials 工程中 logicengine 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.logicengine=11000
+com.dwarfeng.essentials.essentials.exception_code_offset.logicengine=55000
 # essentials 工程中 audit 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.audit=12000
+com.dwarfeng.essentials.essentials.exception_code_offset.audit=56000
 # essentials 工程中 fileio 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.fileio=13000
+com.dwarfeng.essentials.essentials.exception_code_offset.fileio=57000
 # essentials 工程中 voucher 的异常代码偏移量。
-com.dwarfeng.essentials.essentials.exception_code_offset.voucher=14000
+com.dwarfeng.essentials.essentials.exception_code_offset.voucher=58000
 ```
 
 Subgrade 框架中，会将微服务抛出的异常映射为 `ServiceException`，每个 `ServiceException` 都有一个异常代码，
@@ -2355,8 +2361,8 @@ Redis 利用这些配置文件，为缓存的主键添加前缀，以示区分�
 一个典型的前缀更改方式是在前缀的头部添加项目的名称，如：
 
 ```properties
-# 用户对象的主键格式。
-com.dwarfeng.essentials.cache.prefix.entity.acckeeper.account=essentials.acckeeper.entity.account.
+# 凭证对象的主键格式。
+com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher=essentials.voucher.entity.voucher.
 ```
 
 ### timeout-acckeeper.properties
