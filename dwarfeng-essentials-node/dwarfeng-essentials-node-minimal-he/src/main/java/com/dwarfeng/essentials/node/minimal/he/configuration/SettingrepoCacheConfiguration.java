@@ -65,6 +65,12 @@ public class SettingrepoCacheConfiguration {
     private String kvNodePrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.kv_node_item}")
     private String kvNodeItemPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.warmup_setting}")
+    private String warmupSettingPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.warmup_driver_info}")
+    private String warmupDriverInfoPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.warmup_driver_support}")
+    private String warmupDriverSupportPrefix;
 
     public SettingrepoCacheConfiguration(RedisTemplate<String, ?> template) {
         this.template = template;
@@ -296,6 +302,42 @@ public class SettingrepoCacheConfiguration {
                 (RedisTemplate<String, FastJsonKvNodeItem>) template,
                 new KvNodeItemStringKeyFormatter(kvNodeItemPrefix),
                 new MapStructBeanTransformer<>(KvNodeItem.class, FastJsonKvNodeItem.class, BeanMapper.class)
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupSettingCacheDelegate")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, WarmupSetting, FastJsonWarmupSetting> warmupSettingCacheDelegate() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonWarmupSetting>) template,
+                new LongIdStringKeyFormatter(warmupSettingPrefix),
+                new MapStructBeanTransformer<>(WarmupSetting.class, FastJsonWarmupSetting.class, BeanMapper.class)
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverInfoCacheDelegate")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, WarmupDriverInfo, FastJsonWarmupDriverInfo>
+    warmupDriverInfoCacheDelegate() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonWarmupDriverInfo>) template,
+                new LongIdStringKeyFormatter(warmupDriverInfoPrefix),
+                new MapStructBeanTransformer<>(
+                        WarmupDriverInfo.class, FastJsonWarmupDriverInfo.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverSupportCacheDelegate")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, WarmupDriverSupport, FastJsonWarmupDriverSupport>
+    warmupDriverSupportCacheDelegate() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonWarmupDriverSupport>) template,
+                new StringIdStringKeyFormatter(warmupDriverSupportPrefix),
+                new MapStructBeanTransformer<>(
+                        WarmupDriverSupport.class, FastJsonWarmupDriverSupport.class, BeanMapper.class
+                )
         );
     }
 }

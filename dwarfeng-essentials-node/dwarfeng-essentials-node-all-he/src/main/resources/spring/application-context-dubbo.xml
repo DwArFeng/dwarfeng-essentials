@@ -371,6 +371,17 @@
             group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
 
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.WarmupDriverInfoMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.WarmupDriverInfoMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.WarmupSettingMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.WarmupSettingMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+
     <!-- endregion -->
 
     <!-- region notify -->

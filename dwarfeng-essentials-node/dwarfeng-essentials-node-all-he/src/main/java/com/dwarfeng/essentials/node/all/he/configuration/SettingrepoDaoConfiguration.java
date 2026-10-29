@@ -50,6 +50,9 @@ public class SettingrepoDaoConfiguration {
     private final NavigationNodeItemPresetCriteriaMaker navigationNodeItemPresetCriteriaMaker;
     private final KvNodePresetCriteriaMaker kvNodePresetCriteriaMaker;
     private final KvNodeItemPresetCriteriaMaker kvNodeItemPresetCriteriaMaker;
+    private final WarmupSettingPresetCriteriaMaker warmupSettingPresetCriteriaMaker;
+    private final WarmupDriverInfoPresetCriteriaMaker warmupDriverInfoPresetCriteriaMaker;
+    private final WarmupDriverSupportPresetCriteriaMaker warmupDriverSupportPresetCriteriaMaker;
 
     @Value("${com.dwarfeng.essentials.hibernate.jdbc.batch_size}")
     private int batchSize;
@@ -74,7 +77,10 @@ public class SettingrepoDaoConfiguration {
             NavigationNodePresetCriteriaMaker navigationNodePresetCriteriaMaker,
             NavigationNodeItemPresetCriteriaMaker navigationNodeItemPresetCriteriaMaker,
             KvNodePresetCriteriaMaker kvNodePresetCriteriaMaker,
-            KvNodeItemPresetCriteriaMaker kvNodeItemPresetCriteriaMaker
+            KvNodeItemPresetCriteriaMaker kvNodeItemPresetCriteriaMaker,
+            WarmupSettingPresetCriteriaMaker warmupSettingPresetCriteriaMaker,
+            WarmupDriverInfoPresetCriteriaMaker warmupDriverInfoPresetCriteriaMaker,
+            WarmupDriverSupportPresetCriteriaMaker warmupDriverSupportPresetCriteriaMaker
     ) {
         this.template = template;
         this.formatterSupportPresetCriteriaMaker = formatterSupportPresetCriteriaMaker;
@@ -96,6 +102,9 @@ public class SettingrepoDaoConfiguration {
         this.navigationNodeItemPresetCriteriaMaker = navigationNodeItemPresetCriteriaMaker;
         this.kvNodePresetCriteriaMaker = kvNodePresetCriteriaMaker;
         this.kvNodeItemPresetCriteriaMaker = kvNodeItemPresetCriteriaMaker;
+        this.warmupSettingPresetCriteriaMaker = warmupSettingPresetCriteriaMaker;
+        this.warmupDriverInfoPresetCriteriaMaker = warmupDriverInfoPresetCriteriaMaker;
+        this.warmupDriverSupportPresetCriteriaMaker = warmupDriverSupportPresetCriteriaMaker;
     }
 
     @Bean(name = "settingrepo.formatterSupportHibernateBatchBaseDao")
@@ -779,6 +788,120 @@ public class SettingrepoDaoConfiguration {
                 new MapStructBeanTransformer<>(KvNodeItem.class, HibernateKvNodeItem.class, BeanMapper.class),
                 HibernateKvNodeItem.class,
                 kvNodeItemPresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupSettingSupportHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, WarmupSetting, HibernateWarmupSetting>
+    warmupSettingSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(WarmupSetting.class, HibernateWarmupSetting.class, BeanMapper.class),
+                HibernateWarmupSetting.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupSettingSupportHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<WarmupSetting, HibernateWarmupSetting>
+    warmupSettingSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(WarmupSetting.class, HibernateWarmupSetting.class, BeanMapper.class),
+                HibernateWarmupSetting.class
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupSettingSupportHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<WarmupSetting, HibernateWarmupSetting>
+    warmupSettingSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(WarmupSetting.class, HibernateWarmupSetting.class, BeanMapper.class),
+                HibernateWarmupSetting.class,
+                warmupSettingPresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverInfoSupportHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, WarmupDriverInfo, HibernateWarmupDriverInfo>
+    warmupDriverInfoSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(
+                        WarmupDriverInfo.class, HibernateWarmupDriverInfo.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverInfo.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverInfoSupportHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<WarmupDriverInfo, HibernateWarmupDriverInfo>
+    warmupDriverInfoSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        WarmupDriverInfo.class, HibernateWarmupDriverInfo.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverInfo.class
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverInfoSupportHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<WarmupDriverInfo, HibernateWarmupDriverInfo>
+    warmupDriverInfoSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        WarmupDriverInfo.class, HibernateWarmupDriverInfo.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverInfo.class,
+                warmupDriverInfoPresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverSupportSupportHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, WarmupDriverSupport,
+            HibernateWarmupDriverSupport> warmupDriverSupportSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(
+                        WarmupDriverSupport.class, HibernateWarmupDriverSupport.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverSupport.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverSupportSupportHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<WarmupDriverSupport, HibernateWarmupDriverSupport>
+    warmupDriverSupportSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        WarmupDriverSupport.class, HibernateWarmupDriverSupport.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverSupport.class
+        );
+    }
+
+    @Bean(name = "settingrepo.warmupDriverSupportSupportHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<WarmupDriverSupport, HibernateWarmupDriverSupport>
+    warmupDriverSupportSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        WarmupDriverSupport.class, HibernateWarmupDriverSupport.class, BeanMapper.class
+                ),
+                HibernateWarmupDriverSupport.class,
+                warmupDriverSupportPresetCriteriaMaker
         );
     }
 }

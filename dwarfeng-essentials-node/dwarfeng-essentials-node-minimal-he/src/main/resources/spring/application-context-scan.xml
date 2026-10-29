@@ -113,6 +113,7 @@
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.settingrepo\.impl\.handler\.formatter.*$"/>
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.settingrepo\.impl\.handler\.pusher.*$"/>
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.settingrepo\.impl\.handler\.resetter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.settingrepo\.impl\.handler\.wudriver\..*$"/>
     </context:component-scan>
     <!-- 扫描 service 的实现包。 -->
     <context:component-scan
