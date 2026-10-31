@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 更新。
+  - docs/wiki/zh-CN/OptDirectory.md。
+
 - 依赖升级。
   - 升级 `settingrepo` 依赖版本为 `3.1.0.a` 以应用其新功能。
 
