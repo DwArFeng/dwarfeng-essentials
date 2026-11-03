@@ -3,6 +3,7 @@ package com.dwarfeng.essentials.node.all.he.launcher;
 import com.dwarfeng.essentials.node.all.he.handler.SettingrepoLauncherSettingHandler;
 import com.dwarfeng.settingrepo.stack.service.ResetQosService;
 import com.dwarfeng.settingrepo.stack.service.SupportQosService;
+import com.dwarfeng.settingrepo.stack.service.WarmupQosService;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,16 @@ class SettingrepoLauncherConsumer implements Consumer<ApplicationContext> {
         // 根据启动器设置处理器的设置，选择性重置格式化器。
         mayResetFormatter(ctx);
 
+        // 根据启动器设置处理器的设置，选择性重置预热驱动器支持。
+        mayResetWarmupDriver(ctx);
+
         // 根据启动器设置处理器的设置，选择性启动重置服务。
         mayStartReset(ctx);
+
+        // 根据启动器设置处理器的设置，选择性上线预热服务。
+        mayOnlineWarmup(ctx);
+        // 根据启动器设置处理器的设置，选择性启动预热服务。
+        mayEnableWarmup(ctx);
     }
 
     private static void mayResetFormatter(ApplicationContext ctx) {
@@ -41,6 +50,25 @@ class SettingrepoLauncherConsumer implements Consumer<ApplicationContext> {
             supportQosService.resetFormatter();
         } catch (ServiceException e) {
             LOGGER.warn("格式化器支持重置失败，异常信息如下", e);
+        }
+    }
+
+    private static void mayResetWarmupDriver(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        SettingrepoLauncherSettingHandler launcherSettingHandler = ctx.getBean(SettingrepoLauncherSettingHandler.class);
+
+        // 如果不重置预热驱动器支持，则返回。
+        if (!launcherSettingHandler.isResetWarmupDriverSupport()) {
+            return;
+        }
+
+        // 重置预热驱动器支持。
+        LOGGER.info("重置预热驱动器支持...");
+        SupportQosService supportQosService = ctx.getBean(SupportQosService.class);
+        try {
+            supportQosService.resetWarmupDriver();
+        } catch (ServiceException e) {
+            LOGGER.warn("预热驱动器支持重置失败，异常信息如下", e);
         }
     }
 
@@ -75,6 +103,76 @@ class SettingrepoLauncherConsumer implements Consumer<ApplicationContext> {
                         }
                     },
                     new Date(System.currentTimeMillis() + startResetDelay)
+            );
+        }
+    }
+
+    private static void mayOnlineWarmup(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        SettingrepoLauncherSettingHandler launcherSettingHandler = ctx.getBean(SettingrepoLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 获取预热 QOS 服务。
+        WarmupQosService warmupQosService = ctx.getBean(WarmupQosService.class);
+
+        // 判断预热处理器是否上线预热服务，并按条件执行不同的操作。
+        long onlineWarmupDelay = launcherSettingHandler.getOnlineWarmupDelay();
+        if (onlineWarmupDelay == 0) {
+            LOGGER.info("立即上线预热服务...");
+            try {
+                warmupQosService.online();
+            } catch (ServiceException e) {
+                LOGGER.error("无法上线预热服务，异常原因如下", e);
+            }
+        } else if (onlineWarmupDelay > 0) {
+            LOGGER.info("{} 毫秒后上线预热服务...", onlineWarmupDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("上线预热服务...");
+                        try {
+                            warmupQosService.online();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法上线预热服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + onlineWarmupDelay)
+            );
+        }
+    }
+
+    private static void mayEnableWarmup(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
+        SettingrepoLauncherSettingHandler launcherSettingHandler = ctx.getBean(SettingrepoLauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 获取预热 QOS 服务。
+        WarmupQosService warmupQosService = ctx.getBean(WarmupQosService.class);
+
+        // 判断预热处理器是否启动预热服务，并按条件执行不同的操作。
+        long enableWarmupDelay = launcherSettingHandler.getEnableWarmupDelay();
+        if (enableWarmupDelay == 0) {
+            LOGGER.info("立即启动预热服务...");
+            try {
+                warmupQosService.start();
+            } catch (ServiceException e) {
+                LOGGER.error("无法启动预热服务，异常原因如下", e);
+            }
+        } else if (enableWarmupDelay > 0) {
+            LOGGER.info("{} 毫秒后启动预热服务...", enableWarmupDelay);
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("启动预热服务...");
+                        try {
+                            warmupQosService.start();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法启动预热服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + enableWarmupDelay)
             );
         }
     }

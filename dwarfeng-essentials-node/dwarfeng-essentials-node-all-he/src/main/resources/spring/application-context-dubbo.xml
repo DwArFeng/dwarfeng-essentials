@@ -381,6 +381,53 @@
             ref="com.dwarfeng.settingrepo.impl.service.WarmupSettingMaintainServiceImpl"
             group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
     />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.TextListNodeMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.TextListNodeMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.TextListNodeItemMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.TextListNodeItemMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.TextListNodeOperateService"
+            ref="com.dwarfeng.settingrepo.impl.service.TextListNodeOperateServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.WarmupDriverSupportMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.WarmupDriverSupportMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.VideoListNodeMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.VideoListNodeMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.VideoListNodeOperateService"
+            ref="com.dwarfeng.settingrepo.impl.service.VideoListNodeOperateServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.VideoListNodeItemMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.VideoListNodeItemMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.VideoNodeMaintainService"
+            ref="com.dwarfeng.settingrepo.impl.service.VideoNodeMaintainServiceImpl"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.settingrepo.stack.service.VideoNodeOperateService"
+            ref="com.dwarfeng.settingrepo.impl.service.VideoNodeOperateServiceImpl"
+            protocol="hessian"
+            group="${com.dwarfeng.essentials.dubbo.provider.settingrepo.group}"
+    />
 
     <!-- endregion -->
 

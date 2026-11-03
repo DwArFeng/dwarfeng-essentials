@@ -21,6 +21,8 @@ public class SettingrepoFastJsonConfiguration {
         ParserConfig.getGlobalInstance().addAccept(FastJsonSettingCategory.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonSettingNode.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonTextNode.class.getCanonicalName());
+        ParserConfig.getGlobalInstance().addAccept(FastJsonTextListNode.class.getCanonicalName());
+        ParserConfig.getGlobalInstance().addAccept(FastJsonTextListNodeItem.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonImageNode.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonImageListNode.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonImageListNodeItem.class.getCanonicalName());
@@ -43,6 +45,9 @@ public class SettingrepoFastJsonConfiguration {
         ParserConfig.getGlobalInstance().addAccept(FastJsonWarmupDriverInfo.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonWarmupDriverSupport.class.getCanonicalName());
         ParserConfig.getGlobalInstance().addAccept(FastJsonWarmupSetting.class.getCanonicalName());
+        ParserConfig.getGlobalInstance().addAccept(FastJsonVideoNode.class.getCanonicalName());
+        ParserConfig.getGlobalInstance().addAccept(FastJsonVideoListNode.class.getCanonicalName());
+        ParserConfig.getGlobalInstance().addAccept(FastJsonVideoListNodeItem.class.getCanonicalName());
         LOGGER.debug("FastJson autotype 白名单配置完毕");
     }
 }

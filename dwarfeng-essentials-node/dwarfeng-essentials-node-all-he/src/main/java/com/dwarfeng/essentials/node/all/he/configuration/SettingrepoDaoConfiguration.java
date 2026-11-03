@@ -35,6 +35,8 @@ public class SettingrepoDaoConfiguration {
     private final SettingCategoryPresetCriteriaMaker settingCategoryPresetCriteriaMaker;
     private final SettingNodePresetCriteriaMaker settingNodePresetCriteriaMaker;
     private final TextNodePresetCriteriaMaker textNodePresetCriteriaMaker;
+    private final TextListNodePresetCriteriaMaker textListNodePresetCriteriaMaker;
+    private final TextListNodeItemPresetCriteriaMaker textListNodeItemPresetCriteriaMaker;
     private final ImageNodePresetCriteriaMaker imageNodePresetCriteriaMaker;
     private final ImageListNodePresetCriteriaMaker imageListNodePresetCriteriaMaker;
     private final ImageListNodeItemPresetCriteriaMaker imageListNodeItemPresetCriteriaMaker;
@@ -53,6 +55,9 @@ public class SettingrepoDaoConfiguration {
     private final WarmupSettingPresetCriteriaMaker warmupSettingPresetCriteriaMaker;
     private final WarmupDriverInfoPresetCriteriaMaker warmupDriverInfoPresetCriteriaMaker;
     private final WarmupDriverSupportPresetCriteriaMaker warmupDriverSupportPresetCriteriaMaker;
+    private final VideoNodePresetCriteriaMaker videoNodePresetCriteriaMaker;
+    private final VideoListNodePresetCriteriaMaker videoListNodePresetCriteriaMaker;
+    private final VideoListNodeItemPresetCriteriaMaker videoListNodeItemPresetCriteriaMaker;
 
     @Value("${com.dwarfeng.essentials.hibernate.jdbc.batch_size}")
     private int batchSize;
@@ -63,6 +68,8 @@ public class SettingrepoDaoConfiguration {
             SettingCategoryPresetCriteriaMaker settingCategoryPresetCriteriaMaker,
             SettingNodePresetCriteriaMaker settingNodePresetCriteriaMaker,
             TextNodePresetCriteriaMaker textNodePresetCriteriaMaker,
+            TextListNodePresetCriteriaMaker textListNodePresetCriteriaMaker,
+            TextListNodeItemPresetCriteriaMaker textListNodeItemPresetCriteriaMaker,
             ImageNodePresetCriteriaMaker imageNodePresetCriteriaMaker,
             ImageListNodePresetCriteriaMaker imageListNodePresetCriteriaMaker,
             ImageListNodeItemPresetCriteriaMaker imageListNodeItemPresetCriteriaMaker,
@@ -80,13 +87,18 @@ public class SettingrepoDaoConfiguration {
             KvNodeItemPresetCriteriaMaker kvNodeItemPresetCriteriaMaker,
             WarmupSettingPresetCriteriaMaker warmupSettingPresetCriteriaMaker,
             WarmupDriverInfoPresetCriteriaMaker warmupDriverInfoPresetCriteriaMaker,
-            WarmupDriverSupportPresetCriteriaMaker warmupDriverSupportPresetCriteriaMaker
+            WarmupDriverSupportPresetCriteriaMaker warmupDriverSupportPresetCriteriaMaker,
+            VideoNodePresetCriteriaMaker videoNodePresetCriteriaMaker,
+            VideoListNodePresetCriteriaMaker videoListNodePresetCriteriaMaker,
+            VideoListNodeItemPresetCriteriaMaker videoListNodeItemPresetCriteriaMaker
     ) {
         this.template = template;
         this.formatterSupportPresetCriteriaMaker = formatterSupportPresetCriteriaMaker;
         this.settingCategoryPresetCriteriaMaker = settingCategoryPresetCriteriaMaker;
         this.settingNodePresetCriteriaMaker = settingNodePresetCriteriaMaker;
         this.textNodePresetCriteriaMaker = textNodePresetCriteriaMaker;
+        this.textListNodePresetCriteriaMaker = textListNodePresetCriteriaMaker;
+        this.textListNodeItemPresetCriteriaMaker = textListNodeItemPresetCriteriaMaker;
         this.imageNodePresetCriteriaMaker = imageNodePresetCriteriaMaker;
         this.imageListNodePresetCriteriaMaker = imageListNodePresetCriteriaMaker;
         this.imageListNodeItemPresetCriteriaMaker = imageListNodeItemPresetCriteriaMaker;
@@ -105,6 +117,9 @@ public class SettingrepoDaoConfiguration {
         this.warmupSettingPresetCriteriaMaker = warmupSettingPresetCriteriaMaker;
         this.warmupDriverInfoPresetCriteriaMaker = warmupDriverInfoPresetCriteriaMaker;
         this.warmupDriverSupportPresetCriteriaMaker = warmupDriverSupportPresetCriteriaMaker;
+        this.videoNodePresetCriteriaMaker = videoNodePresetCriteriaMaker;
+        this.videoListNodePresetCriteriaMaker = videoListNodePresetCriteriaMaker;
+        this.videoListNodeItemPresetCriteriaMaker = videoListNodeItemPresetCriteriaMaker;
     }
 
     @Bean(name = "settingrepo.formatterSupportHibernateBatchBaseDao")
@@ -248,6 +263,78 @@ public class SettingrepoDaoConfiguration {
                 new MapStructBeanTransformer<>(TextNode.class, HibernateTextNode.class, BeanMapper.class),
                 HibernateTextNode.class,
                 textNodePresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeSupportHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, TextListNode, HibernateTextListNode>
+    textListNodeSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(TextListNode.class, HibernateTextListNode.class, BeanMapper.class),
+                HibernateTextListNode.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeSupportHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<TextListNode, HibernateTextListNode> textListNodeSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(TextListNode.class, HibernateTextListNode.class, BeanMapper.class),
+                HibernateTextListNode.class
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeSupportHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<TextListNode, HibernateTextListNode> textListNodeSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(TextListNode.class, HibernateTextListNode.class, BeanMapper.class),
+                HibernateTextListNode.class,
+                textListNodePresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeItemSupportHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, TextListNodeItem, HibernateTextListNodeItem>
+    textListNodeItemSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(
+                        TextListNodeItem.class, HibernateTextListNodeItem.class, BeanMapper.class
+                ),
+                HibernateTextListNodeItem.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeItemSupportHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<TextListNodeItem, HibernateTextListNodeItem>
+    textListNodeItemSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        TextListNodeItem.class, HibernateTextListNodeItem.class, BeanMapper.class
+                ),
+                HibernateTextListNodeItem.class
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeItemSupportHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<TextListNodeItem, HibernateTextListNodeItem>
+    textListNodeItemSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        TextListNodeItem.class, HibernateTextListNodeItem.class, BeanMapper.class
+                ),
+                HibernateTextListNodeItem.class,
+                textListNodeItemPresetCriteriaMaker
         );
     }
 
@@ -902,6 +989,116 @@ public class SettingrepoDaoConfiguration {
                 ),
                 HibernateWarmupDriverSupport.class,
                 warmupDriverSupportPresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.videoNodeHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, VideoNode, HibernateVideoNode>
+    videoNodeHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(VideoNode.class, HibernateVideoNode.class, BeanMapper.class),
+                HibernateVideoNode.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.videoNodeHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<VideoNode, HibernateVideoNode> videoNodeHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(VideoNode.class, HibernateVideoNode.class, BeanMapper.class),
+                HibernateVideoNode.class
+        );
+    }
+
+    @Bean(name = "settingrepo.videoNodeHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<VideoNode, HibernateVideoNode> videoNodeHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(VideoNode.class, HibernateVideoNode.class, BeanMapper.class),
+                HibernateVideoNode.class,
+                videoNodePresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, VideoListNode, HibernateVideoListNode>
+    videoListNodeHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(
+                        VideoListNode.class, HibernateVideoListNode.class, BeanMapper.class
+                ),
+                HibernateVideoListNode.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<VideoListNode, HibernateVideoListNode> videoListNodeHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VideoListNode.class, HibernateVideoListNode.class, BeanMapper.class
+                ),
+                HibernateVideoListNode.class
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<VideoListNode, HibernateVideoListNode> videoListNodeHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VideoListNode.class, HibernateVideoListNode.class, BeanMapper.class
+                ),
+                HibernateVideoListNode.class,
+                videoListNodePresetCriteriaMaker
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeItemHibernateBatchBaseDao")
+    public HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, VideoListNodeItem, HibernateVideoListNodeItem>
+    videoListNodeItemHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(
+                        VideoListNodeItem.class, HibernateVideoListNodeItem.class, BeanMapper.class
+                ),
+                HibernateVideoListNodeItem.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeItemHibernateEntireLookupDao")
+    public HibernateEntireLookupDao<VideoListNodeItem, HibernateVideoListNodeItem>
+    videoListNodeItemHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VideoListNodeItem.class, HibernateVideoListNodeItem.class, BeanMapper.class
+                ),
+                HibernateVideoListNodeItem.class
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeItemHibernatePresetLookupDao")
+    public HibernatePresetLookupDao<VideoListNodeItem, HibernateVideoListNodeItem>
+    videoListNodeItemHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VideoListNodeItem.class, HibernateVideoListNodeItem.class, BeanMapper.class
+                ),
+                HibernateVideoListNodeItem.class,
+                videoListNodeItemPresetCriteriaMaker
         );
     }
 }

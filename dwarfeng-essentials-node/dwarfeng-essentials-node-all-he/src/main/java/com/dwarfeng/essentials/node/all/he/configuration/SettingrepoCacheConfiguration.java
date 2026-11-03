@@ -35,6 +35,10 @@ public class SettingrepoCacheConfiguration {
     private String settingNodePrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.text_node}")
     private String textNodePrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.text_list_node}")
+    private String textListNodePrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.text_list_node_item}")
+    private String textListNodeItemPrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.image_node}")
     private String imageNodePrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.image_list_node}")
@@ -71,6 +75,12 @@ public class SettingrepoCacheConfiguration {
     private String warmupDriverInfoPrefix;
     @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.warmup_driver_support}")
     private String warmupDriverSupportPrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.video_node}")
+    private String videoNodePrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.video_list_node}")
+    private String videoListNodePrefix;
+    @Value("${com.dwarfeng.essentials.cache.prefix.entity.settingrepo.video_list_node_item}")
+    private String videoListNodeItemPrefix;
 
     public SettingrepoCacheConfiguration(RedisTemplate<String, ?> template) {
         this.template = template;
@@ -122,6 +132,31 @@ public class SettingrepoCacheConfiguration {
                 new StringIdStringKeyFormatter(textNodePrefix),
                 new MapStructBeanTransformer<>(
                         TextNode.class, FastJsonTextNode.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, TextListNode, FastJsonTextListNode> textListNodeRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonTextListNode>) template,
+                new StringIdStringKeyFormatter(textListNodePrefix),
+                new MapStructBeanTransformer<>(
+                        TextListNode.class, FastJsonTextListNode.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.textListNodeItemRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, TextListNodeItem, FastJsonTextListNodeItem>
+    textListNodeItemRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonTextListNodeItem>) template,
+                new LongIdStringKeyFormatter(textListNodeItemPrefix),
+                new MapStructBeanTransformer<>(
+                        TextListNodeItem.class, FastJsonTextListNodeItem.class, BeanMapper.class
                 )
         );
     }
@@ -337,6 +372,43 @@ public class SettingrepoCacheConfiguration {
                 new StringIdStringKeyFormatter(warmupDriverSupportPrefix),
                 new MapStructBeanTransformer<>(
                         WarmupDriverSupport.class, FastJsonWarmupDriverSupport.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.videoNodeRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, VideoNode, FastJsonVideoNode> videoNodeRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVideoNode>) template,
+                new StringIdStringKeyFormatter(videoNodePrefix),
+                new MapStructBeanTransformer<>(
+                        VideoNode.class, FastJsonVideoNode.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, VideoListNode, FastJsonVideoListNode> videoListNodeRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVideoListNode>) template,
+                new StringIdStringKeyFormatter(videoListNodePrefix),
+                new MapStructBeanTransformer<>(
+                        VideoListNode.class, FastJsonVideoListNode.class, BeanMapper.class
+                )
+        );
+    }
+
+    @Bean(name = "settingrepo.videoListNodeItemRedisBatchBaseCache")
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, VideoListNodeItem, FastJsonVideoListNodeItem>
+    videoListNodeItemRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVideoListNodeItem>) template,
+                new LongIdStringKeyFormatter(videoListNodeItemPrefix),
+                new MapStructBeanTransformer<>(
+                        VideoListNodeItem.class, FastJsonVideoListNodeItem.class, BeanMapper.class
                 )
         );
     }
