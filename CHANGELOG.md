@@ -10,7 +10,7 @@
 
 ### Bug 修复
 
-- (无)
+- 修复 `SettingrepoFastJsonConfiguration` 缺少部分 autoType 白名单配置的 bug。
 
 ### 功能移除
 
