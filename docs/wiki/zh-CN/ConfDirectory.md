@@ -114,10 +114,13 @@ conf
 ├─settingrepo
 │     iahn.properties
 │     image-thumbnail.properties
+│     kv.properties
 │     launcher.properties
 │     navigation.properties
 │     push.properties
 │     reset.properties
+│     video-thumbnail.properties
+│     warmup-driver.properties
 │
 ├─telqos
 │     connection.properties
@@ -136,7 +139,7 @@ conf
 省略的部分将会使用 `etc...` 进行标注。
 
 本项目是 1 型构型的合并项目，聚合了 acckeeper、rbacds、buddy、settingrepo、notify、logicengine、audit、
-fileio、voucher 等多个来源服务的功能，因此 `conf/` 目录下共有 18 个配置文件目录、88 个配置文件，
+fileio、voucher 等多个来源服务的功能，因此 `conf/` 目录下共有 18 个目录、91 个文件，
 其中项目级的配置位于 `essentials` 目录下，其余目录则分别对应各个来源服务以及公用的基础组件。
 
 文档中展示的配置均为默认值，其中的主机地址、账号、密码等敏感信息使用 `your-host-here`、`your-username-here`、
@@ -240,7 +243,7 @@ com.dwarfeng.essentials.acckeeper.acckeeper.login.dynamic.expire_duration=600000
 #
 # 对于一个具体的项目，很可能只用一个登录状态主键生成器。此时希望加载
 # 登录状态主键生成器时只加载需要的那个，其余的登录状态主键生成器不加载。这个需求
-# 可以通过编辑 opt/opt-lsk-generator.xml 实现。
+# 可以通过编辑 opt/opt-acckeeper-lskgen.xml 实现。
 com.dwarfeng.essentials.acckeeper.lskgen.type=uuid
 #
 ###################################################
@@ -474,7 +477,7 @@ com.dwarfeng.essentials.audit.consume.inspection_receive.max_idle_time=1000
 #   dubbo: 基于 Dubbo 实现的调度器，利用服务提供者机制实现多个接收节点的负载均衡。
 #
 # 对于一个具体的项目，很可能只使用一个调度器。此时如果希望程序加载时只加载一个调度器，可以通过编辑
-# opt/opt-inspection-dispatcher.xml 文件实现。
+# opt/opt-audit-inspection-dispatcher.xml 文件实现。
 com.dwarfeng.essentials.audit.inspection_dispatcher.type=drain
 #
 ###################################################
@@ -716,7 +719,7 @@ com.dwarfeng.essentials.audit.purge.max_deletion_size=1000
 #   log: 将消息输出到日志中的推送器。
 #
 # 对于一个具体的项目，很可能只用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
-# opt/opt-pusher.xml 文件实现。
+# opt/opt-audit-pusher.xml 文件实现。
 com.dwarfeng.essentials.audit.pusher.type=drain
 #
 ###################################################
@@ -837,6 +840,10 @@ com.dwarfeng.acckeeper.curator.latch_path.clean.leader_latch=/acckeeper/clean/le
 # 清除服务的领导者锁存的路径。
 com.dwarfeng.acckeeper.curator.latch_path.purge.leader_latch=/acckeeper/purge/leader_latch
 # endregion
+# region settingrepo curator/latch-path.properties
+# 预热服务的领导者锁路径。
+com.dwarfeng.settingrepo.curator.latch_path.warmup.leader_latch=/settingrepo/warmup/leader_latch
+# endregion
 # region notify curator/latch-path.properties
 # 清除服务的领导者锁存的路径。
 com.dwarfeng.notify.curator.latch_path.purge.leader_latch=/notify/purge/leader_latch
@@ -876,8 +883,8 @@ com.dwarfeng.voucher.curator.latch_path.cleanup.leader_latch=/voucher/cleanup/le
 以避免项目之间不必要的互斥。
 
 需要特别注意的是，`com.dwarfeng.notify.curator.latch_path.purge.leader_latch` 项的路径为
-`/acckeeper/purge/leader_latch`，与 `com.dwarfeng.acckeeper.curator.latch_path.purge.leader_latch` 的路径重复。
-本项目对此保持既有配置，未作调整。
+`/notify/purge/leader_latch`，与 `com.dwarfeng.acckeeper.curator.latch_path.purge.leader_latch` 的
+`/acckeeper/purge/leader_latch` 相互独立，因此不会产生互斥。
 
 ### mutex-prefix.properties
 
@@ -970,14 +977,14 @@ com.dwarfeng.essentials.datamark.acckeeper.account.update_allowed=true
 ```
 
 本项目为需要数据标记的实体分别定义了资源 URL、字符集与是否允许更新三个配置项，共涉及 9 个来源服务、
-30 个资源段，具体如下：
+32 个资源段，具体如下：
 
 | 服务        | 资源段                                                                                 |
 |-------------|----------------------------------------------------------------------------------------|
 | acckeeper   | Account、Protector                                                                     |
 | rbacds      | User、Role、Pexp、Permission、PermissionGroup、Scope                                   |
 | buddy       | User                                                                                   |
-| settingrepo | SettingCategory、SettingNode                                                           |
+| settingrepo | SettingCategory、SettingNode、WarmupSetting、WarmupDriverInfo                          |
 | notify      | NotifySetting、Sender、Topic、User                                                     |
 | logicengine | Section、State、DriverInfo、GuarderInfo、PerformerInfo                                 |
 | audit       | AuditCategory、AuditPropertyIndicator、Inspection、InspectionDriverInfo、InspectorInfo |
@@ -1189,7 +1196,7 @@ com.dwarfeng.essentials.fileio.purge.max_deletion_size=10000
 #   log: 将消息输出到日志中的推送器。
 #
 # 对于一个具体的项目，很可能只用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
-# opt/opt-push.xml 文件实现。
+# opt/opt-fileio-pusher.xml 文件实现。
 # 可以通过编辑 application-context-scan.xml 实现。
 com.dwarfeng.essentials.fileio.pusher.type=drain
 #
@@ -1403,7 +1410,7 @@ com.dwarfeng.essentials.ftp.root_path.fileio=essentials/fileio
 
 ### settings.xml
 
-日志配置及其参考文件。
+日志配置文件，是真正生效的日志配置。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1534,7 +1541,7 @@ com.dwarfeng.essentials.logicengine.consume.buffer_size=1000
 #   dubbo: 基于 Dubbo 实现的调度器，利用服务提供者机制实现多个接收节点的负载均衡。
 #
 # 对于一个具体的项目，很可能只使用一个调度器。此时如果希望程序加载时只加载一个调度器，可以通过编辑
-# opt/opt-dispatcher.xml 文件实现。
+# opt/opt-logicengine-dispatcher.xml 文件实现。
 com.dwarfeng.essentials.logicengine.dispatcher.type=drain
 #
 ###################################################
@@ -1723,7 +1730,7 @@ com.dwarfeng.essentials.logicengine.purge.max_deletion_size=10000
 #   kafka.native: 使用独立 Kafka 生产者发送推送事件的推送器。
 #
 # 对于一个具体的项目，很可能只使用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
-# opt/opt-pusher.xml 文件实现。
+# opt/opt-logicengine-pusher.xml 文件实现。
 com.dwarfeng.essentials.logicengine.pusher.type=drain
 #
 ###################################################
@@ -1786,7 +1793,7 @@ com.dwarfeng.essentials.logicengine.pusher.log.log_level=INFO
 #   dubbo: 基于 Dubbo 实现的接收器，利用 Dubbo 的服务提供者机制实现多个接收节点的负载均衡。
 #
 # 对于一个具体的项目，很可能只用一个接收器。此时如果希望程序加载时只加载一个接收器，可以通过编辑
-# opt/opt-receiver.xml 文件实现。
+# opt/opt-logicengine-receiver.xml 文件实现。
 com.dwarfeng.essentials.logicengine.receiver.type=do_nothing
 #
 ###################################################
@@ -2098,7 +2105,7 @@ com.dwarfeng.essentials.rbacds.local_cache.user_role_analysis.cleanup_interval=6
 #   log: 将消息输出到日志中的推送器。
 #
 # 对于一个具体的项目，很可能只用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
-# opt/opt-push.xml 文件实现。
+# opt/opt-rbacds-pusher.xml 文件实现。
 # 可以通过编辑 application-context-scan.xml 实现。
 com.dwarfeng.essentials.rbacds.pusher.type=drain
 #
@@ -2166,7 +2173,7 @@ com.dwarfeng.essentials.rbacds.resetter.cron.cron=0 0 1 * * *
 | prefix-logicengine.properties  | logicengine 服务 11 个实体的缓存主键前缀配置 |
 | prefix-notify.properties       | notify 服务 14 个实体的缓存主键前缀配置      |
 | prefix-rbacds.properties       | rbacds 服务 8 个实体的缓存主键前缀配置       |
-| prefix-settingrepo.properties  | settingrepo 服务 19 个实体的缓存主键前缀配置 |
+| prefix-settingrepo.properties  | settingrepo 服务 27 个实体的缓存主键前缀配置 |
 | prefix-voucher.properties      | voucher 服务 6 个实体的缓存主键前缀配置      |
 | timeout-acckeeper.properties   | acckeeper 服务 9 个实体的缓存超时配置        |
 | timeout-audit.properties       | audit 服务 14 个实体的缓存超时配置           |
@@ -2175,7 +2182,7 @@ com.dwarfeng.essentials.rbacds.resetter.cron.cron=0 0 1 * * *
 | timeout-logicengine.properties | logicengine 服务 11 个实体的缓存超时配置     |
 | timeout-notify.properties      | notify 服务 14 个实体的缓存超时配置          |
 | timeout-rbacds.properties      | rbacds 服务 9 个实体的缓存超时配置           |
-| timeout-settingrepo.properties | settingrepo 服务 19 个实体的缓存超时配置     |
+| timeout-settingrepo.properties | settingrepo 服务 27 个实体的缓存超时配置     |
 | timeout-voucher.properties     | voucher 服务 6 个实体的缓存超时配置          |
 
 本项目聚合了多个来源服务，因此原有的单一 `prefix.properties` 与 `timeout.properties` 被拆分为
@@ -2231,9 +2238,8 @@ com.dwarfeng.essentials.cache.prefix.entity.acckeeper.login_state=com.dwarfeng.a
 
 ### prefix-audit.properties
 
-audit 服务的实体缓存主键前缀配置，共 14 个实体。需要注意的是，该文件的写法与其它服务不同：
-其中 4 个审计实体使用 `com.dwarfeng.essentials.cache.prefix.entity.audit.*` 键，另外 10 个自动审计相关实体
-使用未加项目前缀的 `cache.prefix.entity.*` 键，键值也相对简短。
+audit 服务的实体缓存主键前缀配置，共 14 个实体，全部使用
+`com.dwarfeng.essentials.cache.prefix.entity.audit.*` 键。
 
 ```properties
 #------------------------------------------------------------------------------------
@@ -2324,7 +2330,7 @@ com.dwarfeng.essentials.cache.prefix.entity.rbacds.role=com.dwarfeng.rbacds.enti
 
 ### prefix-settingrepo.properties
 
-settingrepo 服务的实体缓存主键前缀配置，共 19 个实体。
+settingrepo 服务的实体缓存主键前缀配置，共 27 个实体。
 
 ```properties
 #------------------------------------------------------------------------------------
@@ -2361,8 +2367,9 @@ Redis 利用这些配置文件，为缓存的主键添加前缀，以示区分�
 一个典型的前缀更改方式是在前缀的头部添加项目的名称，如：
 
 ```properties
-# 凭证对象的主键格式。
-com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher=essentials.voucher.entity.voucher.
+# 凭证对象的主键格式，默认值为 com.dwarfeng.voucher.entity.voucher.，
+# 此处在前缀头部添加项目名称 essentials.，以区分不同项目中的同名实体。
+com.dwarfeng.essentials.cache.prefix.entity.voucher.voucher=essentials.com.dwarfeng.voucher.entity.voucher.
 ```
 
 ### timeout-acckeeper.properties
@@ -2382,9 +2389,8 @@ com.dwarfeng.essentials.cache.timeout.entity.acckeeper.login_state=3600000
 
 ### timeout-audit.properties
 
-audit 服务的实体缓存超时配置，共 14 个实体。与 `prefix-audit.properties` 相同，该文件中 4 个审计实体使用
-`com.dwarfeng.essentials.cache.timeout.entity.audit.*` 键，另外 10 个自动审计相关实体使用未加项目前缀的
-`cache.timeout.entity.*` 键。
+audit 服务的实体缓存超时配置，共 14 个实体，与 `prefix-audit.properties` 相同，该文件中的所有实体
+都使用 `com.dwarfeng.essentials.cache.timeout.entity.audit.*` 键。
 
 ```properties
 #------------------------------------------------------------------------------------
@@ -2474,7 +2480,7 @@ com.dwarfeng.essentials.cache.timeout.entity.rbacds.role=3600000
 
 ### timeout-settingrepo.properties
 
-settingrepo 服务的实体缓存超时配置，共 19 个实体。
+settingrepo 服务的实体缓存超时配置，共 27 个实体。
 
 ```properties
 #------------------------------------------------------------------------------------
@@ -2506,14 +2512,17 @@ com.dwarfeng.essentials.cache.timeout.entity.voucher.checker_support=3600000
 
 ## settingrepo 目录
 
-| 文件名                     | 说明                 |
-|----------------------------|----------------------|
-| iahn.properties            | 国际化节点的配置文件 |
-| image-thumbnail.properties | 图片缩略图的配置文件 |
-| launcher.properties        | 启动器配置文件       |
-| navigation.properties      | 导航节点的配置文件   |
-| push.properties            | 推送服务配置文件     |
-| reset.properties           | 重置服务配置文件     |
+| 文件名                     | 说明                   |
+|----------------------------|------------------------|
+| iahn.properties            | 国际化节点的配置文件   |
+| image-thumbnail.properties | 图片缩略图的配置文件   |
+| kv.properties              | 键值对节点的配置文件   |
+| launcher.properties        | 启动器配置文件         |
+| navigation.properties      | 导航节点的配置文件     |
+| push.properties            | 推送服务配置文件       |
+| reset.properties           | 重置服务配置文件       |
+| video-thumbnail.properties | 视频缩略图的配置文件   |
+| warmup-driver.properties   | 预热驱动器的配置文件   |
 
 ### iahn.properties
 
@@ -2529,6 +2538,21 @@ com.dwarfeng.essentials.settingrepo.iahn.cache.timeout.locale_map=3600000
 com.dwarfeng.essentials.settingrepo.iahn.cache.prefix.message_map=com.dwarfeng.settingrepo.iahn.cache.message_map.
 # 国际化节点消息映射缓存的超时时间。
 com.dwarfeng.essentials.settingrepo.iahn.cache.timeout.message_map=3600000
+#
+# 国际化节点地区列表缓存的前缀。
+com.dwarfeng.essentials.settingrepo.iahn.cache.prefix.locale_list=com.dwarfeng.settingrepo.iahn.cache.locale_list.
+# 国际化节点地区列表缓存的超时时间。
+com.dwarfeng.essentials.settingrepo.iahn.cache.timeout.locale_list=3600000
+#
+# 国际化节点 Mek 列表缓存的前缀。
+com.dwarfeng.essentials.settingrepo.iahn.cache.prefix.mek_list=com.dwarfeng.settingrepo.iahn.cache.mek_list.
+# 国际化节点 Mek 列表缓存的超时时间。
+com.dwarfeng.essentials.settingrepo.iahn.cache.timeout.mek_list=3600000
+#
+# 国际化节点消息表缓存的前缀。
+com.dwarfeng.essentials.settingrepo.iahn.cache.prefix.message_table=com.dwarfeng.settingrepo.iahn.cache.message_table.
+# 国际化节点消息表缓存的超时时间。
+com.dwarfeng.essentials.settingrepo.iahn.cache.timeout.message_table=3600000
 ```
 
 ### image-thumbnail.properties
@@ -2546,6 +2570,17 @@ com.dwarfeng.essentials.settingrepo.image_thumbnail.quality=0.5
 com.dwarfeng.essentials.settingrepo.image_thumbnail.output_format=jpg
 ```
 
+### kv.properties
+
+键值对节点的配置文件。
+
+```properties
+# 键值对节点查询结果缓存的前缀。
+com.dwarfeng.essentials.settingrepo.kv.cache.prefix.inspect_result=com.dwarfeng.settingrepo.kv.cache.inspect_result.
+# 键值对节点查询结果缓存的超时时间。
+com.dwarfeng.essentials.settingrepo.kv.cache.timeout.inspect_result=3600000
+```
+
 ### launcher.properties
 
 启动器配置文件，决定了启动时的一些行为。
@@ -2553,11 +2588,26 @@ com.dwarfeng.essentials.settingrepo.image_thumbnail.output_format=jpg
 ```properties
 # 程序启动完成后，是否重置格式化器支持。
 com.dwarfeng.essentials.settingrepo.launcher.reset_formatter_support=true
+#
+# 程序启动完成后，是否重置预热驱动器支持。
+com.dwarfeng.essentials.settingrepo.launcher.reset_warmup_driver_support=true
+#
 # 程序启动完成后，启动重置的延时时间。
 # 有些数据仓库以及重置器在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理这些数据源和推送器。
 # 该参数等于 0，意味着启动后立即启动重置服务。
 # 该参数小于 0，意味着程序不主动启动重置服务，需要手动启动。
 com.dwarfeng.essentials.settingrepo.launcher.start_reset_delay=30000
+#
+# 程序启动完成后，上线预热的延时时间。
+# 有些数据仓库以及预热处理器在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理这些数据源和推送器。
+# 该参数等于 0，意味着启动后立即上线预热服务。
+# 该参数小于 0，意味着程序不主动上线预热服务，需要手动上线。
+com.dwarfeng.essentials.settingrepo.launcher.online_warmup_delay=3000
+# 程序启动完成后，启动预热的延时时间。
+# 有些数据仓库以及预热处理器在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理这些数据源和推送器。
+# 该参数等于 0，意味着启动后立即启动预热服务。
+# 该参数小于 0，意味着程序不主动启动预热服务，需要手动启动。
+com.dwarfeng.essentials.settingrepo.launcher.enable_warmup_delay=3500
 ```
 
 ### navigation.properties
@@ -2677,6 +2727,43 @@ com.dwarfeng.essentials.settingrepo.resetter.kafka.topic=settingrepo.reset
 
 您不必对所有的配置项进行配置。在项目第一次启动之前，您需要修改 `opt/opt-settingrepo-resetter.xml`，
 决定项目中需要使用哪种重置器。您只需要修改使用的重置器的配置。
+
+### video-thumbnail.properties
+
+视频缩略图的配置文件。
+
+```properties
+# 视频节点缩略图的宽度。
+com.dwarfeng.essentials.settingrepo.video_thumbnail.width=980
+# 视频节点缩略图的高度。
+com.dwarfeng.essentials.settingrepo.video_thumbnail.height=540
+# 视频节点缩略图的质量。
+com.dwarfeng.essentials.settingrepo.video_thumbnail.quality=0.5
+# 视频节点缩略图的输出格式。
+com.dwarfeng.essentials.settingrepo.video_thumbnail.output_format=jpg
+```
+
+### warmup-driver.properties
+
+预热驱动器的配置文件。目前项目支持的预热驱动器类型均无需额外配置，因此该文件只按驱动器类型划分配置段，
+没有实际的配置项。
+
+```properties
+###################################################
+#                      cron                       #
+###################################################
+# Cron 驱动没有任何配置。
+#
+###################################################
+#                   fixed_delay                   #
+###################################################
+# FixedDelay 驱动没有任何配置。
+#
+###################################################
+#                    fixed_rate                   #
+###################################################
+# FixedRate 驱动没有任何配置。
+```
 
 ## telqos 目录
 
@@ -2798,7 +2885,7 @@ com.dwarfeng.essentials.voucher.launcher.start_reset_delay=30000
 #   log: 将消息输出到日志中的推送器。
 #
 # 对于一个具体的项目，很可能只用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
-# opt/opt-push.xml 文件实现。
+# opt/opt-voucher-pusher.xml 文件实现。
 # 可以通过编辑 application-context-scan.xml 实现。
 com.dwarfeng.essentials.voucher.pusher.type=drain
 #
